@@ -1,10 +1,43 @@
-#nav{
+html{
+	background-color: grey;
+}
+a{
+	color:#D8CEF6;
+}
+a:hover{
+	color:white;
+}
+.nav{
 	width:75%;
 	text-align:center;
-	align:center;
+	align: center;
+
+}
+.nav td{
+	background-color:#29088A;
+	padding: 10px 10px;
+	border: 1px solid;
+}
+.nav td:hover{
+	color:white;
+}
+#highscore{
+	text-align:center;
+	width:25%;
 	
 }
-
-td{
-	background-color:red;
+#highscore tr>th{
+	text-align:center;
+	background-color: #585858;
+}
+#highscore tr:nth-child(odd){
+	background-color:#A4A4A4
+	
+}
+#highscore tr:nth-child(even){
+	background-color:white
+}
+#wort{
+	text-align: center;
+	
 }
