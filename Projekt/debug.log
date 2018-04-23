@@ -10,3 +10,6 @@
 [0423/103751.698:ERROR:crash_report_database_win.cc(568)] CreateDirectory C:\Program Files (x86)\reports: Zugriff verweigert (0x5)
 [0423/103751.698:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: Die Pipe wurde beendet. (0x6D)
 [0423/103751.698:ERROR:crash_report_database_win.cc(568)] CreateDirectory C:\Program Files (x86)\reports: Zugriff verweigert (0x5)
+[0423/104800.300:ERROR:crash_report_database_win.cc(568)] CreateDirectory C:\Program Files (x86)\reports: Zugriff verweigert (0x5)
+[0423/104800.300:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: Die Pipe wurde beendet. (0x6D)
+[0423/104800.300:ERROR:crash_report_database_win.cc(568)] CreateDirectory C:\Program Files (x86)\reports: Zugriff verweigert (0x5)
