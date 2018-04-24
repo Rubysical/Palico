@@ -1,26 +1,37 @@
-html{
-	background-color: grey;
+
+
+
+.center {
+    margin: auto;
+	width: 50%;
+	margin-top: 30px;
+	margin-bottom: 30px;
 }
+
+
 a{
-	color:#D8CEF6;
+	margin-left: 100px;
 }
 a:hover{
-	color:white;
+	text-decoration: underline;
 }
-.nav{
-	width:75%;
-	text-align:center;
-	align: center;
+p{
+	margin-top: 30px;
+	margin-left: 3%;
+}
 
+#teamvorstellung
+{
+	text-align: center;
+	margin-top: 30px;
 }
-.nav td{
-	background-color:#29088A;
-	padding: 10px 10px;
-	border: 1px solid;
+
+table
+{
+	margin-top: 30px;
+	margin-bottom: 30px;
 }
-.nav td:hover{
-	color:white;
-}
+
 #highscore{
 	text-align:center;
 	width:25%;
@@ -41,3 +52,24 @@ a:hover{
 	text-align: center;
 	
 }
+
+.canvas
+{
+	margin-left: 3%;
+	width: 50%;
+	height: 50%;
+	background: rgb(212, 212, 212);
+	border: 5px solid rgb(99, 99, 99);
+}
+
+.modal-footer {
+	margin-top: 30px;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-align: center;
+	align-items: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	padding: 1rem;
+	border-top: 3px solid #8f919270;
+  }
