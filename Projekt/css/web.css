@@ -1,31 +1,78 @@
+/*CSS-Datei aller styles die in den HTML-Dateien verwunden
+ *
+ *Created by Team Palico:
+ *	Ufuk-Ibrahim Demircelik
+ * 	Alexander Schaller
+ *	Christian Schaller
+*/
 
-
-
-.center {
+/*---------------------------------Überschrift Anfang*-------------------------------*/
+.überschrift {
     margin: auto;
 	width: 50%;
 	margin-top: 30px;
 	margin-bottom: 30px;
 }
+/*---------------------------------Überschrift Ende*---------------------------------*/
 
+
+
+
+/*---------------------------------Navigation Anfang*---------------------------------*/
+.nav{
+	
+	margin: auto;
+	width: 100%;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	list-style-type: none;
+    
+    overflow: hidden;
+    background-color:orangered;
+}
 
 a{
-	margin-left: 100px;
+	width:200px;
+	margin-left:200px;
+	display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+	text-decoration: none;
 }
 a:hover{
-	text-decoration: underline;
+	background-color: white;
+	text-decoration: none;
+	color:black;
 }
-p{
-	margin-top: 30px;
-	margin-left: 3%;
+/* hat noch keine Funktionalität*/
+a:hover:not(.active) {
+    background-color: grey;
 }
+.active {
+	background-color: white;
+	color:black;
+}
+/*---------------------------		Navigation Ende*			--------------------------*/
 
+
+
+
+/*----------------------        Seite: Index/Home Anfang          ------------------------------*/
 #teamvorstellung
 {
 	text-align: center;
 	margin-top: 30px;
 }
+/*----------------------        Seite: Index/Home Ende          ------------------------------*/
 
+
+
+
+
+
+
+/*----------------------        Seite: Highscore Anfang          ------------------------------*/
 table
 {
 	margin-top: 30px;
@@ -48,11 +95,26 @@ table
 #highscore tr:nth-child(even){
 	background-color:white
 }
+/*----------------------        Seite: Highscore Ende          ------------------------------*/
+
+
+
+
+
+
+/*----------------------        Seite: Wörter einrechen Anfang          ---------------------*/
 #wort{
 	text-align: center;
 	
 }
+/*----------------------        Seite: Wörter einrechen Ende          ----------------------*/
 
+
+
+
+
+
+/*----------------------        Seite: Spiel Anfang          		  ----------------------*/
 .canvas
 {
 	margin-left: 3%;
@@ -61,7 +123,24 @@ table
 	background: rgb(212, 212, 212);
 	border: 5px solid rgb(99, 99, 99);
 }
+/*----------------------        Seite: Spiel Ende          		  ----------------------*/
 
+
+
+
+
+/*----------------------     Allgemeine Formatierungen Anfang     ----------------------*/
+p{
+	margin-top: 30px;
+	margin-left: 3%;
+}
+/*----------------------     Allgemeine Formatierungen Ende     ----------------------*/
+
+
+
+
+
+/*----------------------    		 Footer Anfang    		 ----------------------*/
 .modal-footer {
 	margin-top: 30px;
 	display: -ms-flexbox;
@@ -73,3 +152,4 @@ table
 	padding: 1rem;
 	border-top: 3px solid #8f919270;
   }
+/*----------------------    		 Footer Ende    		 ----------------------*/
