@@ -89,7 +89,7 @@ table
 	background-color: #585858;
 }
 #highscore tr:nth-child(odd){
-	background-color:#A4A4A4
+	background-color: orangered
 	
 }
 #highscore tr:nth-child(even){
