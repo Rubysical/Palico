@@ -12,11 +12,9 @@
 	width: 50%;
 	margin-top: 30px;
 	margin-bottom: 30px;
+	
 }
 /*---------------------------------Überschrift Ende*---------------------------------*/
-
-
-
 
 /*---------------------------------Navigation Anfang*---------------------------------*/
 .nav{
@@ -27,8 +25,8 @@
 	margin-bottom: 30px;
 	list-style-type: none;
     
-    overflow: hidden;
-    background-color:orangered;
+	overflow: hidden;
+	background: orangered;
 }
 
 a{

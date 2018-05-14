@@ -1,36 +1,44 @@
 <html>
 
-
 <head>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/web.css">
-
+    
+    <h1 class="überschrift" align="center">Spiel</h1>
 </head>
 
 <body>
+    <div>
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a class="active" href="skribbl.html">Spiel</a>
+            <a href="highscore.html">Highscore</a>
+            <a href="wort-einreichen.html">Wort einreichen</a>
+        </nav>
+    </div>
 
-    <header>
-        <h1 class="überschrift" align="center">Spiel</h1>
-    </header>
+    <div>
+        <p>Zeichenfeld</p>
+       <!-- <canvas class = "canvas" >
+            <script type="text/javascript" src="js/javascript.js"></script>
+        </canvas>
+    -->
+        <canvas id="drawArea" width="400" height="400" style="border:1px solid black; cursor:crosshair;"
+         onmousemove="drawLine(event);" onmousedown="start(event);" onmouseup="stop();">
+            Ihr browser unterstützt kein HTML5 - Canvas
 
-    <nav class="nav">
-        <a href="index.html">Home</a>
-        <a class="active" href="skribbl.html">Spiel</a>
-        <a href="highscore.html">Highscore-Tabelle</a>
-        <a href="wort-einreichen.html">Wort einreichen</a>
-    </nav>
+        </canvas>
+        
+        <script type="text/javascript" src="js/javascript.js"></script>
 
-<p>Zeichenfeld</p>
- <canvas class = "canvas">
+        <input type="text" placeholder="Bitte hier das Wört eintippen"></input>
+        <input type="submit" value="Senden"></input>
+    </div>
 
- </canvas>
-
- <input type="text" placeholder="Bitte hier das Wört eintippen"></input>
- <input type="submit" value="Senden"></input>
- </body>
+</body>
 
 <footer class="modal-footer">
-    © Palico Montagsmaler
+	© Palico Montagsmaler
 
 </footer>
 
