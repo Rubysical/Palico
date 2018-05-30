@@ -17,24 +17,34 @@
         </nav>
     </div>
 
-    <div>
+    <!--Anfang Canvas Bereich-->
+    
+    <div id="canvas">
         <p>Zeichenfeld</p>
-       <!-- <canvas class = "canvas" >
-            <script type="text/javascript" src="js/javascript.js"></script>
-        </canvas>
-    -->
+        <div>
+            <button class="FarbButton" id="buttonBlack" onclick="colorBlack()"></button>
+            <button class="FarbButton" id="buttonWhite" onclick="colorWhite()"></button>
+            <button class="FarbButton" id="buttonBlue"></button>
+            <button class="FarbButton" id="buttonRed"></button> 
+            <button class="FarbButton" id="buttonGreen"></button>
+            <button class="FarbButton" id="buttonBrown"></button>
+            <button class="FarbButton" id="buttonYellow"></button>
+            <button class="FarbButton" id="buttonOrange"></button>
+        </div>
         <canvas id="drawArea" width="400" height="400" style="border:1px solid black; cursor:crosshair;"
-         onmousemove="drawLine(event);" onmousedown="start(event);" onmouseup="stop();">
-            Ihr browser unterstützt kein HTML5 - Canvas
+        onmousemove="drawLine(event);" onmousedown="start(event);" onmouseup="stop();">
+           Ihr browser unterstützt kein HTML5 - Canvas
 
-        </canvas>
+       </canvas>
         
         <script type="text/javascript" src="js/javascript.js"></script>
-
+    </div>
+     <!--Ende Canvas Bereich-->
+     
+    <div>
         <input type="text" placeholder="Bitte hier das Wört eintippen"></input>
         <input type="submit" value="Senden"></input>
     </div>
-
 </body>
 
 <footer class="modal-footer">

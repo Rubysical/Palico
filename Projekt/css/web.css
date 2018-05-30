@@ -113,13 +113,34 @@ table
 
 
 /*----------------------        Seite: Spiel Anfang          		  ----------------------*/
-.canvas
-{
-	margin-left: 3%;
-	width: 50%;
-	height: 50%;
-	background: rgb(212, 212, 212);
-	border: 5px solid rgb(99, 99, 99);
+
+.farbButton{
+	width: 30px;
+	height: 30px;
+}
+#buttonBlack{
+	background-color: black;
+}
+#buttonWhite{
+	background-color: white;
+}
+#buttonBlue{
+	background-color: blue;
+}
+#buttonRed{
+	background-color: red;
+}
+#buttonGreen{
+	background-color: green;
+}
+#buttonBrown{
+	background-color: brown;
+}
+#buttonYellow{
+	background-color: yellow;
+}
+#buttonOrange{
+	background-color: Orange;
 }
 /*----------------------        Seite: Spiel Ende          		  ----------------------*/
 
