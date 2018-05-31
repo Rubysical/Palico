@@ -55,6 +55,7 @@ app.get('/words', (req, res) => {
 
 app.put('/add-word', (req, res) => {
     const wordArray = req.body;
+
     // Check if data is an array
     if (!Array.isArray(wordArray)) {
         res.status(400).json({message: 'Data must be a JSON array'});
@@ -81,7 +82,6 @@ app.put('/add-word', (req, res) => {
     }
 
     res.status(200).json({message: 'Data has been successfully added'})
-   
 });
 
 /**
@@ -90,4 +90,3 @@ app.put('/add-word', (req, res) => {
 app.listen(port, () => {
     console.log('Listening on port ' + port);
 });
-
