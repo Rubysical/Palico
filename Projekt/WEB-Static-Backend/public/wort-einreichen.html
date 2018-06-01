@@ -2,7 +2,7 @@
 <head>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/web.css">
-    
+    <script src="js/words.js"></script>
     <h1 class="überschrift" align="center">Wort einreichen</h1>
 </head>
 
@@ -19,8 +19,18 @@
     <div id="wort">
         <input name="label1" type="text" placeholder="Bitte hier das Wört eintippen"></input>
         <input type="submit" value="Abbrechen" ></input>
-        <input id="button1" type="submit" value="Senden" onclick="location.href='/add-word';" </a></input>
-   
+        <input id="button1" type="submit" value="Senden" onclick="myFunction();"></input>
+    
+        <script>
+            var highscoreUrl = 'http://127.0.0.1:3000/add-word';
+            function myFunction()
+            {
+                var xhr = new XMLHttpRequest();
+                xhr.open('PUT', highscoreUrl, true);
+                xhr.send();
+                
+            }
+        </script>
     </div>
     
 </body> 
