@@ -2,7 +2,7 @@
 <head>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/web.css">
-   
+    <script type = "text/javascript" src="js/jQuery.js"></script>
     <script src="js/highscore.js"></script>
     <h1 class="überschrift" align="center">Highscore</h1>
 </head>
@@ -19,36 +19,28 @@
  
     <div>
             <script>
-                getScore();
-             </script>
+              
+               
+                $.ajax({
+                type: 'GET',
+                url: 'http://localhost:3000/highscore',
+                success: function(data) {
+                    for (var key in data) {
+                        $('#highscore').append(`<tr> <td>${key}</td> <td>${data[key]}</td> </tr>`);
+                    }
+
+                }
+            });
+            
+    
+            </script>
 
         <table id="highscore" align="center" border=2>
-            <tr>
-                <th> Name </th>
-                <th>Punkte</th>
-            </tr>
-            <tr>
-                <td id="s1"> Spieler 1</td>
-                <td id="p1"> Punkte </td>
-            </tr>
-            <tr>
-                <td id="s2"> Spieler 2</td>
-                <td id="p2"> Punkte </td>
-            </tr>
-            <tr>
-                <td id="s3"> Spieler 3</td>
-                <td id="p3"> Punkte</td>
-            </tr>
-            <tr>
-                <td id="s4"> Spieler 4 </td>
-                <td id="p4"> Punkte</td>
-            </tr>
-            <tr>
-                <td id="s5"> Spieler 5</td>
-                <td id="p5"> Punkte</td>
-            </tr>
+            
         </table>
     </div>
+
+
 </body>
 <footer class="modal-footer">
     © Palico Montagsmaler
