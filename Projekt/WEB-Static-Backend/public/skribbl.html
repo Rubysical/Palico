@@ -4,6 +4,10 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/web.css">
     <script type = "text/javascript" src="js/jQuery.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+    <link href="css/chat.css" rel="stylesheet" />
+    
     <h1 class="überschrift" align="center">Spiel</h1>
 </head>
 
@@ -18,7 +22,6 @@
     </div>
 
     <!--Anfang Canvas Bereich-->
-    
     <div id="canvas">
         <p>Zeichenfeld</p>
         <div>
@@ -40,32 +43,20 @@
         <script type="text/javascript" src="js/javascript.js"></script>
     </div>
      <!--Ende Canvas Bereich-->
-     
-    <div>
-        <input type="text" placeholder="Bitte hier das Wört eintippen"></input>
-        <input type="submit" value="Senden"></input>
+ 
+    <div id="mario-chat">
+        <h2>Chat-Feld</h2>
+        <div id="chat-window">
+            <div id="output"></div>
+            <div id="feedback"></div>
+        </div>
+        <input id="handle" type="text" placeholder="Username" />
+        <input id="message" type="text" placeholder="Bitte hier das Wört eintippen" />
+        <button id="send">Send</button>
+
     </div>
+    <script src="js/chat.js"></script>
 
-
-    <!-- SOCKET IO HTML-->
-    <ul class="pages">  
-        <li class="chat page">
-          <div class="chatArea">
-            <ul class="messages"></ul>
-          </div>
-          <input class="inputMessage" placeholder="Type here..."/>
-        </li>
-        <li class="login page">
-          <div class="form">
-            <h3 class="title">What's your nickname?</h3>
-            <input class="usernameInput" type="text" maxlength="14" />
-          </div>
-        </li>
-      </ul>
-          
-      <script src="js/socket.js"></script>
-
-      <!--SOCKET IO HTML ENDE-->
 </body>
 
 <footer class="modal-footer">
