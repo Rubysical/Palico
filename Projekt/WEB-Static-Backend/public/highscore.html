@@ -16,11 +16,14 @@
             <a href="wort-einreichen.html">Wort einreichen</a>
         </nav>
     </div>
+
+    <input id="button" type="submit" value="Aktualisieren" onclick="getScore();"></input>
  
     <div>
             <script>
-              
-               
+                function getScore(){
+                $("#highscore tr").remove(); 
+                $(document).ready(function () {
                 $.ajax({
                 type: 'GET',
                 url: 'http://localhost:3000/highscore',
@@ -31,8 +34,8 @@
 
                 }
             });
-            
-    
+        });    
+    }
             </script>
 
         <table id="highscore" align="center" border=2>
@@ -40,7 +43,9 @@
         </table>
     </div>
 
-
+    <script>
+        getScore();
+    </script>
 </body>
 <footer class="modal-footer">
     © Palico Montagsmaler
