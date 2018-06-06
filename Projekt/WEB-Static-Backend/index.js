@@ -4,7 +4,7 @@ const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-
+const fs = require('fs');
 
 // SOCKET
 var socket = require('socket.io');
@@ -112,17 +112,19 @@ app.put('/add-word', (req, res) => {
 
         // If not a duplicate, add it to the array
         if (isDuplicate) console.log(wordArray[newWord] + ' is a duplicate');
-        else words.push(wordArray[newWord]);
-    }
+        else
+        { words.push(wordArray[newWord]); 
+
+            const json = JSON.stringify(words);
+            fs.writeFile ("./resources/words.json", json, (err) => {
+                    if (err) throw err;
+                    console.log('complete');
+                }
+            );
+        }
+        }
+    
 
     res.status(200).json({message: 'Data has been successfully added'})
 });
 
-/**
- * Start listening
-*/
-/*
-app.listen(port, () => {
-    console.log('Listening on port ' + port);
-});
-*/
