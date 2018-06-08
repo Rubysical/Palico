@@ -6,14 +6,6 @@
  *	Christian Schaller
 */
 
-/*----------------------     Allgemeine Formatierungen Anfang     ----------------------*/
-p{
-	margin-top: 30px;
-	margin-left: 3%;
-}
-/*----------------------     Allgemeine Formatierungen Ende     ----------------------*/
-
-
 /*---------------------------------Überschrift Anfang*-------------------------------*/
 .überschrift {
     margin: auto;
@@ -23,7 +15,6 @@ p{
 	
 }
 /*---------------------------------Überschrift Ende*---------------------------------*/
-
 
 /*---------------------------------Navigation Anfang*---------------------------------*/
 .nav{
@@ -63,6 +54,8 @@ a:hover:not(.active) {
 /*---------------------------		Navigation Ende*			--------------------------*/
 
 
+
+
 /*----------------------        Seite: Index/Home Anfang          ------------------------------*/
 #teamvorstellung
 {
@@ -72,23 +65,21 @@ a:hover:not(.active) {
 /*----------------------        Seite: Index/Home Ende          ------------------------------*/
 
 
-/*----------------------        Seite: Spiel Anfang          		  ----------------------*/
-
-#gameTable {
-	height: 50%; 
-}
 
 
-/*----------------------        Seite: Spiel Ende          		  ----------------------*/
+
 
 
 /*----------------------        Seite: Highscore Anfang          ------------------------------*/
+table
+{
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
 
 #highscore{
 	text-align:center;
 	width:25%;
-	margin-top: 30px;
-	margin-bottom: 30px;
 	
 }
 #highscore tr>th{
@@ -105,12 +96,67 @@ a:hover:not(.active) {
 /*----------------------        Seite: Highscore Ende          ------------------------------*/
 
 
+
+
+
+
 /*----------------------        Seite: Wörter einrechen Anfang          ---------------------*/
 #wort{
 	text-align: center;
 	
 }
 /*----------------------        Seite: Wörter einrechen Ende          ----------------------*/
+
+
+
+
+
+
+/*----------------------        Seite: Spiel Anfang          		  ----------------------*/
+
+.farbButton{
+	width: 30px;
+	height: 30px;
+}
+#buttonBlack{
+	background-color: black;
+}
+#buttonWhite{
+	background-color: white;
+}
+#buttonBlue{
+	background-color: blue;
+}
+#buttonRed{
+	background-color: red;
+}
+#buttonGreen{
+	background-color: green;
+}
+#buttonBrown{
+	background-color: brown;
+}
+#buttonYellow{
+	background-color: yellow;
+}
+#buttonOrange{
+	background-color: Orange;
+}
+/*----------------------        Seite: Spiel Ende          		  ----------------------*/
+
+
+
+
+
+/*----------------------     Allgemeine Formatierungen Anfang     ----------------------*/
+p{
+	margin-top: 30px;
+	margin-left: 3%;
+}
+/*----------------------     Allgemeine Formatierungen Ende     ----------------------*/
+
+
+
 
 
 /*----------------------    		 Footer Anfang    		 ----------------------*/
@@ -126,3 +172,157 @@ a:hover:not(.active) {
 	border-top: 3px solid #8f919270;
   }
 /*----------------------    		 Footer Ende    		 ----------------------*/
+
+/*----------------------- SOCKET IO -----------------------*/
+
+/* Fix user-agent */
+
+* {
+	box-sizing: border-box;
+  }
+  
+  html {
+	font-weight: 300;
+	-webkit-font-smoothing: antialiased;
+  }
+  
+  html, input {
+	font-family:
+	  "HelveticaNeue-Light",
+	  "Helvetica Neue Light",
+	  "Helvetica Neue",
+	  Helvetica,
+	  Arial,
+	  "Lucida Grande",
+	  sans-serif;
+  }
+  
+  html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+  }
+  
+  ul {
+	list-style: none;
+	word-wrap: break-word;
+  }
+  
+  /* Pages */
+  
+  .pages {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+  }
+  
+  .page {
+	height: 100%;
+	position: absolute;
+	width: 100%;
+  }
+  
+  /* Login Page */
+  
+  .login.page {
+	background-color: #000;
+  }
+  
+  .login.page .form {
+	height: 100px;
+	margin-top: -100px;
+	position: absolute;
+  
+	text-align: center;
+	top: 50%;
+	width: 100%;
+  }
+  
+  .login.page .form .usernameInput {
+	background-color: transparent;
+	border: none;
+	border-bottom: 2px solid #fff;
+	outline: none;
+	padding-bottom: 15px;
+	text-align: center;
+	width: 400px;
+  }
+  
+  .login.page .title {
+	font-size: 200%;
+  }
+  
+  .login.page .usernameInput {
+	font-size: 200%;
+	letter-spacing: 3px;
+  }
+  
+  .login.page .title, .login.page .usernameInput {
+	color: #fff;
+	font-weight: 100;
+  }
+  
+  /* Chat page */
+  
+  .chat.page {
+	display: none;
+  }
+  
+  /* Font */
+  
+  .messages {
+	font-size: 150%;
+  }
+  
+  .inputMessage {
+	font-size: 100%;
+  }
+  
+  .log {
+	color: gray;
+	font-size: 70%;
+	margin: 5px;
+	text-align: center;
+  }
+  
+  /* Messages */
+  
+  .chatArea {
+	height: 100%;
+	padding-bottom: 60px;
+  }
+  
+  .messages {
+	height: 100%;
+	margin: 0;
+	overflow-y: scroll;
+	padding: 10px 20px 10px 20px;
+  }
+  
+  .message.typing .messageBody {
+	color: gray;
+  }
+  
+  .username {
+	font-weight: 700;
+	overflow: hidden;
+	padding-right: 15px;
+	text-align: right;
+  }
+  
+  /* Input */
+  
+  .inputMessage {
+	border: 10px solid #000;
+	bottom: 0;
+	height: 60px;
+	left: 0;
+	outline: none;
+	padding-left: 10px;
+	position: absolute;
+	right: 0;
+	width: 100%;
+  }
+
+  /*---------------- SOCKET IO ENDE ----------------*/

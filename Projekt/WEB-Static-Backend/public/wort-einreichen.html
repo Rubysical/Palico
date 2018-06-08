@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/web.css">
-    <script type = "text/javascript" src="js/words.js"></script>
+   <script type = "text/javascript" src="js/words.js"></script>
     <script type = "text/javascript" src="js/jQuery.js"></script>
     
     <h1 class="überschrift" align="center">Wort einreichen</h1>
@@ -20,30 +20,13 @@
         </nav>
     </div>
     <div id="wort">
+
         <input id="textfield" type="text" placeholder="Bitte hier das Wört eintippen"></input>
         <input type="submit" value="Abbrechen"></input>
         <input id="button" type="submit" value="Senden" onclick="myFunction();"></input>
 
     </div>
-    <script> 
-        function myFunction()
-        {        
-        var $word = $('#textfield').val();
-        var parts = $word.split(','); //Für später
-        array = [$word];
-        var json = JSON.stringify(array);
-        console.log(json);
-        
-        $.ajax({
-            type: 'PUT',
-            contentType: "application/json; charset=utf-8",
-            url: 'http://localhost:3000/add-word',
-            data: json
-        });
-        }
-    
-    
-    </script>
+
 </body>
 <footer class="modal-footer">
     © Palico Montagsmaler

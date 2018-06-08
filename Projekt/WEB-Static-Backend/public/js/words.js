@@ -1,24 +1,42 @@
-/*var addWordsUrl = "http://localhost:3000/add-word";
+$(document).ready(function(){
 
+    $("button").click(function(){
+        myFunction();
+    });
+});
 
-window.addEventListener("load", function() { 
+function myFunction()
+{        
+var $word = $('#textfield').val();
+var parts = $word.split(','); //Für später
+array = [$word];
+var json = JSON.stringify(array);
+console.log(json);
 
-    // Dem HTML-Button (name="senden") den Event-Handler: "click" zuweisen 
-    // dieser ruft dann (beim klicken) die Funktion: eintragen() auf. 
-    document.getElementsByName("senden")[0].addEventListener("click", senden); 
-    
-   }); 
+$.ajax({
+    type: 'PUT',
+    contentType: "application/json; charset=utf-8",
+    url: 'http://localhost:3000/add-word',
+    data: json
+});
 
-function senden(){
-    xhr = new XMLHttpRequest();
-    xhr.open("PUT", addWordsUrl, true);
-    xhr.setRequestHeader("Content-type", "application/json");
-    var word = document.getElementById("label1").value;
-    array = [word];
-    var json = JSON.stringify(array);
-    console.log(json);
-    xhr.send(json);
-   
+//TimeOut nicht schön !
+
+setTimeout(function(){
+    showMessage();
+}, 300);
+
 }
 
-*/
+;
+
+
+function showMessage() {  
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:3000/message',
+            success: function (data) {
+                alert(data);
+            }
+        });
+}

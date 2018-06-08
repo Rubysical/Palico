@@ -1,3 +1,13 @@
+body{
+    font-family: 'Nunito';
+}
+
+h2{
+    font-size: 18px;
+    padding: 10px 20px;
+    color: #575ed8;
+}
+
 #skribble-chat{
     max-width: 600px;
     margin: 30px auto;
@@ -7,7 +17,7 @@
 }
 
 #chat-window{
-    height: 260px;
+    height: 400px;
     overflow: auto;
     background: #f9f9f9;
 }
