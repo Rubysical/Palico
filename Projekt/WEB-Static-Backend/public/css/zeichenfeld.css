@@ -1,0 +1,40 @@
+/**
+  * Fix user-agent
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+/**
+  * Canvas
+*/
+
+.whiteboard {
+  width: 100%;
+  height: 50%;
+
+  position: static;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  border:2px solid black; 
+  cursor:crosshair;
+}
+
+.colors {
+  position: static;
+}
+
+.color {
+  display: inline-block;
+  height: 48px;
+  width: 48px;
+}
+
+.color.black { background-color: black; }
+.color.red { background-color: red; }
+.color.green { background-color: green; }
+.color.blue { background-color: blue; }
+.color.yellow { background-color: yellow; }

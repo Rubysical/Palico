@@ -128,3 +128,12 @@ app.put('/add-word', (req, res) => {
     res.status(200).json({message: 'Data has been successfully added'})
 });
 
+
+//zeichenfeld
+function onConnection(socket){
+
+    socket.on('drawing', (data) => socket.broadcast.emit('drawing', data));
+  
+  }
+
+  io.on('connection', onConnection);
