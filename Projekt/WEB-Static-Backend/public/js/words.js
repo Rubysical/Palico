@@ -26,6 +26,7 @@ function senden(){
 $(document).ready(function(){
 
     $("button").click(function(){
+        alert("asd");
         myFunction();
     });
 });

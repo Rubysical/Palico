@@ -17,35 +17,13 @@
         </nav>
     </div>
 
-    <input id="button" type="submit" value="Aktualisieren" onclick="getScore();"></input>
+    <input id="button" type="submit" value="Aktualisieren"></input>
  
     <div>
-            <script>
-                function getScore(){
-                $("#highscore tr").remove(); 
-                $(document).ready(function () {
-                $.ajax({
-                type: 'GET',
-                url: 'http://localhost:3000/highscore',
-                success: function(data) {
-                    for (var key in data) {
-                        $('#highscore').append(`<tr> <td>${key}</td> <td>${data[key]}</td> </tr>`);
-                    }
-
-                }
-            });
-        });    
-    }
-            </script>
-
         <table id="highscore" align="center" border=2>
             
         </table>
     </div>
-
-    <script>
-        getScore();
-    </script>
 </body>
 
 <footer class="modal-footer">
