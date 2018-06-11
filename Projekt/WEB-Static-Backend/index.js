@@ -5,6 +5,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const fs = require('fs');
+var msg;
+
 
 // SOCKET
 var socket = require('socket.io');
@@ -111,7 +113,10 @@ app.put('/add-word', (req, res) => {
         }
 
         // If not a duplicate, add it to the array
-        if (isDuplicate) console.log(wordArray[newWord] + ' is a duplicate');
+        if (isDuplicate){
+            console.log(wordArray[newWord] + ' is a duplicate');
+            msg = wordArray[newWord] + " is a duplicate";
+        }
         else
         { words.push(wordArray[newWord]); 
 
@@ -119,6 +124,7 @@ app.put('/add-word', (req, res) => {
             fs.writeFile ("./resources/words.json", json, (err) => {
                     if (err) throw err;
                     console.log('complete');
+                    msg = wordArray[newWord] + " has been successfully added";
                 }
             );
         }
@@ -137,3 +143,8 @@ function onConnection(socket){
   }
 
   io.on('connection', onConnection);
+
+  //
+  app.get('/message', (req, res) => {
+    res.send(msg);
+});

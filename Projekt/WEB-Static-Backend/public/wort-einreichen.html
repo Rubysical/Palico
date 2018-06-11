@@ -19,31 +19,16 @@
             <a class="active" href="wort-einreichen.html">Wort einreichen</a>
         </nav>
     </div>
-    <div id="wort">
+    <div id="word">
         <input id="textfield" type="text" placeholder="Bitte hier das Wört eintippen"></input>
         <input type="submit" value="Abbrechen"></input>
-        <input id="button" type="submit" value="Senden" onclick="myFunction();"></input>
+        <input id="button" type="submit" value="Senden" onclick="myFunction();" pattern="[A-Za-z]"></input>
+        
+        <h2 id="wordTrue" class="wordTrueHidden">Wort erfolgreich eingereicht</h2>
+        <h2 id="wordFalse" class="wordFalseHidden">Wort ist schon enthalten</h2>
 
     </div>
-    <script> 
-        function myFunction()
-        {        
-        var $word = $('#textfield').val();
-        var parts = $word.split(','); //Für später
-        array = [$word];
-        var json = JSON.stringify(array);
-        console.log(json);
-        
-        $.ajax({
-            type: 'PUT',
-            contentType: "application/json; charset=utf-8",
-            url: 'http://localhost:3000/add-word',
-            data: json
-        });
-        }
-    
-    
-    </script>
+
 </body>
 <footer class="modal-footer">
     © Palico Montagsmaler

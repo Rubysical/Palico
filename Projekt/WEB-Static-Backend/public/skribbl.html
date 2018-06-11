@@ -11,6 +11,7 @@
     <script type = "text/javascript" src="js/jQuery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    
 
     <h1 class="überschrift" align="center">Spiel</h1>
     <div>
@@ -24,14 +25,25 @@
 </head>
 
 <body >
-   
+        <main>
+                <div id="popup" class="overlayHidden">
+                    <h2>Spielername</h2>
+                    <form method="post">
+                        <label for="playerName">Um das Spiel spielen zu können, geben Sie einen Spielernamen an: <br> 
+                                                (Mit Buchstabe oder Zahl anfange!)</label>
+                        <input id="playerName" type="text" />
+                    </form>
+                    <button id="play">Play!</button>
+                </div>
+            </main>
 
-    <table id="gameTable" border=1 >
-        <colgroup>
+    <table  id="gameArea" class="gameHidden" border=1>
+             <colgroup>
             <col width="25%">
             <col width="50%">
             <col width="25%">
         </colgroup>
+        
         <tr>
             <td>
                 <div id="skribble-chat">
@@ -40,7 +52,7 @@
                         <div id="output"></div>
                         <div id="feedback"></div>
                     </div>
-                    <input id="handle" type="text" placeholder="Username" />
+                    <input id="handle" type="text" placeholder="Username" readonly/>
                     <input id="message" type="text" placeholder="Bitte hier das Wört eintippen" />
                     <button id="send">Send</button>
                     <script src="js/chat.js"></script>
@@ -56,7 +68,7 @@
                         <div class="color blue"></div>                
                         <div class="color yellow"></div>            
                     </div>
-                    <canvas class="whiteboard" ></canvas>
+                    <canvas id="canvas" class="whiteboard" ></canvas>
                 <script src="js/zeichenfeld.js"></script>
                 </div>
                 
@@ -65,8 +77,8 @@
                 
             </td>
             <td>
-                <h1>test</h1>
-                
+                <h2>aktuelle spielernamen und wer dran ist</h2>
+                <p>was fehlt: wir müssen noch irgendwie zeigen wie lang das wort ist usw.</p>
             </td>
         </tr>
         

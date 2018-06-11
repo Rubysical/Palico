@@ -106,10 +106,23 @@ a:hover:not(.active) {
 
 
 /*----------------------        Seite: Wörter einrechen Anfang          ---------------------*/
-#wort{
+#word{
 	text-align: center;
 	
 }
+.wordTrueHidden{
+	display: none;
+}
+.wordTrue{
+	color: green;
+}
+.wordFalseHidden{
+	display: none;
+}
+.wordFalse{
+	color: red;
+}
+
 /*----------------------        Seite: Wörter einrechen Ende          ----------------------*/
 
 
