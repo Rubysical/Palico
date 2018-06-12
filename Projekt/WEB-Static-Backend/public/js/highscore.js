@@ -1,8 +1,5 @@
 $(document).ready(function(){
 getScore();
-        $("button").click(function(){
-    getScore();
-    });
 });
 
 
