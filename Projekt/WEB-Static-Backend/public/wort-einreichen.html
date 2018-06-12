@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/web.css">
-    <script type = "text/javascript" src="js/words.js"></script>
+   <script type = "text/javascript" src="js/words.js"></script>
     <script type = "text/javascript" src="js/jQuery.js"></script>
     
     <h1 class="überschrift" align="center">Wort einreichen</h1>
@@ -19,15 +19,14 @@
             <a class="active" href="wort-einreichen.html">Wort einreichen</a>
         </nav>
     </div>
-    <div id="word">
+    <div id="wort">
+
         <input id="textfield" type="text" placeholder="Bitte hier das Wört eintippen"></input>
-        <input id="button" type="submit" value="Senden" pattern="[A-Za-z]"></input>
-        
-        <h2 id="wordTrue" class="wordTrueHidden">Wort erfolgreich eingereicht</h2>
-        <h2 id="wordFalse" class="wordFalseHidden">Wort ist schon enthalten</h2>
+        <input type="submit" value="Abbrechen"></input>
+        <input id="button" type="submit" value="Senden" onclick="myFunction();"></input>
 
     </div>
-    
+
 </body>
 <footer class="modal-footer">
     © Palico Montagsmaler
