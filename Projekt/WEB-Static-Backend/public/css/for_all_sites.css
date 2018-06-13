@@ -1,0 +1,32 @@
+/* CSS, welches für alle Webseiten gleich ist
+ * wie z.B. Navigation, Überschrift etc.
+*/
+
+/* Navigation Beginn*/
+.nav-color{
+    background-color: red; 
+}
+/* Navigation Ende*/
+
+
+
+/* Überschrift Beginn (aus Bootstrap 4.1.0)*/
+.headline{
+    color:red;
+    text-align:center;
+    border-bottom: 1px solid red;
+    padding-bottom: 10px;
+}
+/* Überschrift Ende*/
+
+/*Footer Beginn*/
+.footer-bottom {
+    background-color: grey;
+    width: 100%;
+}
+.copyright {
+    color: #fff;
+    line-height: 30px;
+    min-height: 30px;
+    padding: 7px 0;
+}
