@@ -1,36 +1,64 @@
 <html>
-
 <head>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="css/web.css">
-   <script type = "text/javascript" src="js/words.js"></script>
-    <script type = "text/javascript" src="js/jQuery.js"></script>
-    
-    <h1 class="überschrift" align="center">Wort einreichen</h1>
+    <title>Palico-Montagsmaler</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/for_all_sites.css">
+    <link rel="stylesheet" href="/css/wort-einreichen.css">
+    <link rel="stylesheet" href="/css/web.css">
+    <script type="text/javascript" src="js/words.js"></script>
+    <script type="text/javascript" src="js/jQuery.js"></script>
 </head>
-
-
 <body>
-    <div>
-        <nav class="nav">
-            <a href="index.html">Home</a>
-            <a href="skribbl.html">Spiel</a>
-            <a href="highscore.html">Highscore</a>
-            <a class="active" href="wort-einreichen.html">Wort einreichen</a>
-        </nav>
-    </div>
-    <div id="wort">
+    <!-- Navbar Beginn -->
+    <nav class="navbar navbar-expand-lg navbar-dark nav-color">
+        <a class="navbar-brand" href="index.html">Palico-Montagsmaler</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="skribbl.html">Spiel</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="highscore.html">Highscore</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="wort-einreichen.html">Wort einreichen</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Navbar Ende -->
 
+
+    <div class="headline">
+        <h2 class="display-2">Wort einreichen</h2>
+    </div>
+
+
+    <div id="wort">
         <input id="textfield" type="text" placeholder="Bitte hier das Wört eintippen"></input>
         <input type="submit" value="Abbrechen"></input>
         <input id="button" type="submit" value="Senden" onclick="myFunction();"></input>
-
     </div>
-
 </body>
-<footer class="modal-footer">
-    © Palico Montagsmaler
 
+<!-- Footer -->
+<footer>
+    <div class="footer-bottom">
+        <div class="text-center">
+            <div class="copyright">
+                © 2018, Palico
+            </div>
+        </div>
+    </div>
 </footer>
+<!-- Footer -->
 
 </html>

@@ -14,62 +14,14 @@ p{
 /*----------------------     Allgemeine Formatierungen Ende     ----------------------*/
 
 
-/*---------------------------------Überschrift Anfang*-------------------------------*/
-.überschrift {
-    margin: auto;
-	width: 50%;
-	margin-top: 30px;
-	margin-bottom: 30px;
-	
-}
-/*---------------------------------Überschrift Ende*---------------------------------*/
 
 
 /*---------------------------------Navigation Anfang*---------------------------------*/
-.nav{
-	
-	margin: auto;
-	width: 100%;
-	margin-top: 30px;
-	margin-bottom: 30px;
-	list-style-type: none;
-    
-	overflow: hidden;
-	background: orangered;
-}
 
-a{
-	width:25%;
-	
-	display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-	text-decoration: none;
-}
-a:hover{
-	background-color: white;
-	text-decoration: none;
-	color:black;
-}
-/* hat noch keine Funktionalität*/
-a:hover:not(.active) {
-    background-color: grey;
-}
-.active {
-	background-color: white;
-	color:black;
-}
 /*---------------------------		Navigation Ende*			--------------------------*/
 
 
-/*----------------------        Seite: Index/Home Anfang          ------------------------------*/
-#teamvorstellung
-{
-	text-align: center;
-	margin-top: 30px;
-}
-/*----------------------        Seite: Index/Home Ende          ------------------------------*/
+
 
 
 /*----------------------        Seite: Spiel Anfang          		  ----------------------*/
@@ -96,7 +48,7 @@ a:hover:not(.active) {
 	background-color: #585858;
 }
 #highscore tr:nth-child(odd){
-	background-color: orangered
+	background-color: red
 	
 }
 #highscore tr:nth-child(even){

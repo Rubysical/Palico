@@ -1,8 +1,12 @@
 <html>
 
 <head>
+    <title>Palico-Montagsmaler</title>
+    <meta charset="utf-8">
     <!--CSS-->
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/for_all_sites.css">
+	<link rel="stylesheet" href="/css/skribbl.css">
     <link rel="stylesheet" href="css/web.css">
     <link rel="stylesheet" href="css/chat.css">
     <link rel="stylesheet" href="css/zeichenfeld.css">
@@ -11,20 +15,39 @@
     <script type = "text/javascript" src="js/jQuery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
    <!-- <script src="/socket.io/socket.io.js"></script>-->
-    
-
-    <h1 class="überschrift" align="center">Spiel</h1>
-    <div>
-            <nav class="nav">
-                <a href="index.html">Home</a>
-                <a class="active" href="skribbl.html">Spiel</a>
-                <a href="highscore.html">Highscore</a>
-                <a href="wort-einreichen.html">Wort einreichen</a>
-            </nav>
-        </div>
 </head>
 
 <body >
+    <!-- Navbar Beginn -->
+	<nav class="navbar navbar-expand-lg navbar-dark nav-color">
+            <a class="navbar-brand" href="index.html">Palico-Montagsmaler</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+             aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="skribbl.html">Spiel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="highscore.html">Highscore</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="wort-einreichen.html">Wort einreichen</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Navbar Ende -->
+
+        <div class="headline">
+                <h2 class="display-2">Spiel</h2>
+        </div>
+
         <main>
                 <div id="popup" class="overlayHidden">
                     <h2>Spielername</h2>
@@ -92,10 +115,14 @@
    
     </table>
 </body>
-
-<footer class="modal-footer">
-	© Palico Montagsmaler
-
-</footer>
-
+<footer>
+		<div class="footer-bottom">
+			<div class="text-center">
+				<div class="copyright">
+					© 2018, Palico
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Footer -->
 </html>
