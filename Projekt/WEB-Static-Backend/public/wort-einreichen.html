@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <title>Palico-Montagsmaler</title>
     <meta charset="utf-8">
@@ -10,6 +11,7 @@
     <script type="text/javascript" src="js/words.js"></script>
     <script type="text/javascript" src="js/jQuery.js"></script>
 </head>
+
 <body>
     <!-- Navbar Beginn -->
     <nav class="navbar navbar-expand-lg navbar-dark nav-color">
@@ -41,11 +43,13 @@
         <h2 class="display-2">Wort einreichen</h2>
     </div>
 
-    <div id="wort" class="text-center">
-        <input id="textfield" type="text" placeholder="Bitte hier das Wört eintippen"></input>
-        <input type="submit" value="Abbrechen"></input>
-        <input id="button" type="submit" value="Senden" onclick="myFunction();"></input>
+    <div class="input-style col-4 input-group mb-3">
+        <input id="textfield" type="text" class="form-control" placeholder="Wort eingeben" aria-label="Wort eingeben" aria-describedby="basic-addon">
+        <div class="input-group-append">
+            <input id="button" class="btn btn-outline-secondary" type="submit" value="Senden" onclick="myFunction();"></input>
+        </div>
     </div>
+
 </body>
 
 <!-- Footer -->
