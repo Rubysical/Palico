@@ -9,7 +9,6 @@
 /* Navigation Ende*/
 
 
-
 /* Überschrift Beginn (aus Bootstrap 4.1.0)*/
 .headline{
     color:red;
@@ -21,7 +20,7 @@
 
 /*Footer Beginn*/
 .footer-bottom {
-    background-color: grey;
+    background-color: #343a40;
     width: 100%;
 }
 .copyright {

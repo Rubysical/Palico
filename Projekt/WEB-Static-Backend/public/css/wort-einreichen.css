@@ -1,1 +1,17 @@
 /*CSS spezifisch für die Wort-einreichen-Unterseite*/
+#word{
+	text-align: center;
+	
+}
+.wordTrueHidden{
+	display: none;
+}
+.wordTrue{
+	color: green;
+}
+.wordFalseHidden{
+	display: none;
+}
+.wordFalse{
+	color: red;
+}
