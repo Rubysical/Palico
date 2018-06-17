@@ -10,6 +10,8 @@
     <!-- JavaScript -->
     <script type="text/javascript" src="js/jQuery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+	<script type="text/javascript" src="js/jquery-slim.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
     <!-- <script src="/socket.io/socket.io.js"></script>-->
 </head>
 
@@ -49,8 +51,8 @@
             <h2>Spielername</h2>
             <form method="post">
                 <label for="playerName">Um das Spiel spielen zu können, geben Sie einen Spielernamen an:
-                    <br> (Mit Buchstabe oder Zahl anfange!)</label>
-                <input id="playerName" type="text" />
+                    <br> (Mit Buchstabe oder Zahl anfangen!)</label>
+                <input id="playerName" type="text" placeholder="Spielername eingeben"></input>
             </form>
             <button id="play">Play!</button>
         </div>
