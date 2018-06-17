@@ -16,8 +16,44 @@
 	color: red;
 }
 
+/*Textfield style*/
 .input-style {
     margin-top: 20px;
     margin-right:auto; 
     margin-left:auto;
 }
+
+/*Button style*/
+.btn-outline-secondary {
+	color: white;
+	background-color: red;
+	background-image: none;
+	border-color: red;
+  }
+  
+  .btn-outline-secondary:hover {
+	color: red;
+	background-color: white;
+	border-color: red;
+  }
+  
+  .btn-outline-secondary:focus, .btn-outline-secondary.focus {
+	box-shadow: 0 0 0 0.2rem transparent;
+  }
+  
+  .btn-outline-secondary.disabled, .btn-outline-secondary:disabled {
+	color: white;
+	background-color: transparent;
+  }
+  
+  .btn-outline-secondary:not(:disabled):not(.disabled):active, .btn-outline-secondary:not(:disabled):not(.disabled).active,
+  .show > .btn-outline-secondary.dropdown-toggle {
+	color: red;
+	background-color: white;
+	border-color: red;
+  }
+  
+  .btn-outline-secondary:not(:disabled):not(.disabled):active:focus, .btn-outline-secondary:not(:disabled):not(.disabled).active:focus,
+  .show > .btn-outline-secondary.dropdown-toggle:focus {
+	box-shadow: 0 0 0 0.2rem red;
+  }
