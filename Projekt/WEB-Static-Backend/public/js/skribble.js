@@ -1,6 +1,13 @@
 // Make connection
 var socket = io.connect('http://localhost:3000');
 
+var playerNameArray = [];
+socket.emit('sendPlayerArray',function(){
+});
+socket.on('playerArray', function(array){
+    playerNameArray=array;
+    console.log(playerNameArray);
+});
 
 //=================START CHAT=================//
 // Query DOM
@@ -20,7 +27,7 @@ var	PlayBtn = document.getElementById('play'),
 
     PlayBtn.addEventListener('click', function(){
         closeWindow();
-        socket.emit('NewPlayer', playerName.value);
+        
     });
     
     openWindow();
@@ -41,7 +48,6 @@ socket.on('connect', function () {
     });
 
     // Listen for events (client wartet auf methodenaufrufe vom Server)
-    
     /*
     *random client was choosen from the server 
     *this player is the current draftsman
@@ -74,7 +80,6 @@ socket.on('disconnectThatSoc', function(){
     socket.disconnect();
 });
 
-
 //PopUp-Fenster
 
 function openWindow() {
@@ -90,9 +95,15 @@ function closeWindow() {
             playerName.value="";
             playerName.placeholder='Ungültige eingabe. Mit Buchstaben oder Zahlen anfangen!';
         }else{
-            handle.value=playerName.value;
-            gameHidden.className = 'game';
-            popup.className = 'overlayHidden';
+            if(playerNameArray.includes(playerName.value)){
+                playerName.value=""; 
+                playerName.placeholder='Spielername schon vergeben';
+            }else{
+                socket.emit('NewPlayer', playerName.value);
+                handle.value=playerName.value;
+                gameHidden.className = 'game';
+                popup.className = 'overlayHidden';
+            } 
         }
     }
 }

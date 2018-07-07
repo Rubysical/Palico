@@ -70,6 +70,9 @@ io.on('connection', (socket) => {
     Array.prototype.sample = function(){
         return this[Math.floor(Math.random()*this.length)];
     }
+    socket.on('sendPlayerArray', function(){
+        io.sockets.emit('playerArray', Players);
+    });
 
     // Handle chat event
     socket.on('chat', function(data){
