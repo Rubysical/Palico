@@ -6,7 +6,8 @@ var message = document.getElementById('message'),
       handle = document.getElementById('handle'),
       btn = document.getElementById('send'),
       output = document.getElementById('output'),
-      feedback = document.getElementById('feedback');
+      feedback = document.getElementById('feedback'),
+      player = document.getElementById('player');
 
 //PopUp Fenster
 var	PlayBtn = document.getElementById('play'),
@@ -14,31 +15,53 @@ var	PlayBtn = document.getElementById('play'),
     playerName = document.getElementById('playerName'),
     gameHidden = document.getElementById('gameArea');
 
-    PlayBtn.addEventListener('click', closeWindow);
+    PlayBtn.addEventListener('click', function(){
+        closeWindow();
+        socket.emit('NewPlayer', playerName.value);
+        
+    });
+
     openWindow();
 
-
-// Emit events
-btn.addEventListener('click', function(){
-    socket.emit('chat', {
-        message: message.value,
-        handle: handle.value
+socket.on('connect', function () { 
+    // Emit events
+    btn.addEventListener('click', function(){
+        socket.emit('chat', {
+            message: message.value,
+            handle: handle.value
+        });
+        message.value = "";
     });
-    message.value = "";
+
+    message.addEventListener('keypress', function(){
+        socket.emit('typing', handle.value);
+        
+    });
+
+    // Listen for events
+    socket.on('chat', function(data){
+        feedback.innerHTML = '';
+        output.innerHTML += '<p><strong>' + data.handle + ': </strong>' + data.message + '</p>';
+    });
+
+    socket.on('typing', function(data){
+        feedback.innerHTML = '<p><em>' + data + ' is typing a message...</em></p>';
+    });
+
+    socket.on('seePlayer', function(data){
+        player.innerHTML = '<h2>Aktuelle Spieler: ' +data+'</h2><br>';
+    });
+   
+   
+    socket.on('del', function(){
+        socket.emit('delPlayer');
+    });
+    
+    
 });
 
-message.addEventListener('keypress', function(){
-    socket.emit('typing', handle.value);
-})
-
-// Listen for events
-socket.on('chat', function(data){
-    feedback.innerHTML = '';
-    output.innerHTML += '<p><strong>' + data.handle + ': </strong>' + data.message + '</p>';
-});
-
-socket.on('typing', function(data){
-    feedback.innerHTML = '<p><em>' + data + ' is typing a message...</em></p>';
+socket.on('disconnectThatSoc', function(){
+    socket.disconnect(socket.id);
 });
 
 
@@ -63,3 +86,4 @@ function closeWindow() {
         }
     }
 }
+

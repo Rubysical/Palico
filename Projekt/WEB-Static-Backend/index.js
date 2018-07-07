@@ -27,16 +27,53 @@ const staticPath = path.join(__dirname, 'public');
 app.use(express.static(staticPath));
 
 
-
+var Players = [];
+var online=0;
+var randomPlayer='';
 // Socket setup & pass server
 var io = socket(server);
 io.on('connection', (socket) => {
 
     console.log('made socket connection', socket.id);
+   
+    //Creat a new Player
+    socket.on('NewPlayer', function(data) {
+        online++;
+        console.log('Online players : ' + online);
+        console.log('New player connected : ' + data);
+        Players[Players.length] = data;
+        
+       //min. 2 players as text on the website
+       // io.sockets.emit('playerList', Players);
+        console.log(Players);
+        
+        //drawsman was choose when minimum 2 player online
+        //only for the first game
+        if(online == 2){
+            chooseDrawsman();
+        }
+        startGame();
+    });
+    //choose a random drawsman from the Players array
+    function chooseDrawsman(){
+        randomPlayer= Players.sample();
+        io.sockets.emit('draw', randomPlayer);
+    }
+    //start the game and choose a random player who can draw 
+    function startGame(){
+        console.log('start game');
+        io.sockets.emit('playerList', Players);
+        io.sockets.emit('drawsman', randomPlayer);
+    }
+    
+    //Getting a random value from an array
+    Array.prototype.sample = function(){
+        return this[Math.floor(Math.random()*this.length)];
+    }
 
     // Handle chat event
     socket.on('chat', function(data){
-        // console.log(data);
+        //console.log(data);
         io.sockets.emit('chat', data);
     });
 
@@ -45,9 +82,11 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('typing', data);
     });
 
+    //disconnect the player
+    socket.on('disconnect', function () {
+        console.log('user disconnected');
+    });
 });
-
-
 
 
 const words = require('./resources/words');

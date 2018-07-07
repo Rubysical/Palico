@@ -3,19 +3,23 @@
 <head>
     <title>Palico-Montagsmaler</title>
     <meta charset="utf-8">
+
     <!-- CSS -->
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/for_all_sites.css">
     <link rel="stylesheet" href="/css/skribbl.css">
     <!-- JavaScript -->
+
     <script type="text/javascript" src="js/jQuery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
 	<script type="text/javascript" src="js/jquery-slim.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
+
     <!-- <script src="/socket.io/socket.io.js"></script>-->
 </head>
 
 <body>
+
     <!-- Navbar Beginn -->
     <nav class="navbar navbar-expand-lg navbar-dark nav-color">
         <a class="navbar-brand" href="index.html">Palico-Montagsmaler</a>
@@ -49,12 +53,13 @@
     <main>
         <div id="popup" class="overlayHidden">
             <h2>Spielername</h2>
-            <form method="post">
+            <form method="GET">
                 <label for="playerName">Um das Spiel spielen zu können, geben Sie einen Spielernamen an:
                     <br> (Mit Buchstabe oder Zahl anfangen!)</label>
                 <input id="playerName" type="text" placeholder="Spielername eingeben"></input>
             </form>
             <button id="play">Play!</button>
+
         </div>
     </main>
 
@@ -76,7 +81,6 @@
                     <input id="handle" type="text" placeholder="Username" readonly/>
                     <input id="message" type="text" placeholder="Bitte hier das Wört eintippen" />
                     <button id="send">Send</button>
-                    <script src="js/chat.js"></script>
                 </div>
             </td>
             <td>
@@ -90,20 +94,23 @@
                         <div class="color yellow"></div>
                     </div>
                     <canvas id="canvas" class="whiteboard"></canvas>
-                    <script src="js/zeichenfeld.js"></script>
-                </div>
-
+                </div>         
 
                 <!--Ende Canvas Bereich-->
 
             </td>
             <td>
-                <h2>aktuelle spielernamen und wer dran ist</h2>
-                <p>was fehlt: wir müssen noch irgendwie zeigen wie lang das wort ist usw.</p>
-            </td>
+                <div id="currentDrawsman">
+                </div>
+                <div id="currentPlayerList">
+                </div>
+                
+
+             </td>
         </tr>
 
     </table>
+    <script src="js/skribble.js"></script>
 </body>
 <footer>
     <div class="footer-bottom">
