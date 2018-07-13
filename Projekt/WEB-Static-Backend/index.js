@@ -137,6 +137,7 @@ app.put('/add-word', (req, res) => {
     // Check if data is an array
     if (!Array.isArray(wordArray)) {
         res.status(400).json({message: 'Data must be a JSON array'});
+        msg = "Datei muss ein JSON-Array sein."
         return;
     }
 
@@ -144,6 +145,7 @@ app.put('/add-word', (req, res) => {
         // Check if data is in String format
         if (typeof wordArray[newWord] !== 'string') {
             res.status(400).json({message: 'Data in array must be Strings'});
+            msg = "Daten im Array müssen Strings sein."
             return;
         }
 
@@ -159,7 +161,7 @@ app.put('/add-word', (req, res) => {
         {
 
          console.log(wordArray[newWord] + ' is a duplicate');
-         msg = wordArray[newWord] + " is a duplicate";
+         msg = wordArray + " mindestens ein Wort ist schon vorhanden.";
 
         }
         else
@@ -170,7 +172,7 @@ app.put('/add-word', (req, res) => {
                     if (err) throw err;
                     
                     console.log(wordArray[newWord] + ' has been successfully added');
-                    msg = wordArray[newWord] + " has been successfully added";
+                    msg = wordArray + " wurde(n) erfolgreich eingereicht.";
                 }
             );
         }

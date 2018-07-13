@@ -9,7 +9,8 @@ function myFunction()
 {        
 var $word = $('#textfield').val();
 var parts = $word.split(','); //Für später
-array = [$word];
+
+array = parts;
 var json = JSON.stringify(array);
 console.log(json);
 
