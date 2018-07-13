@@ -8,9 +8,8 @@
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/for_all_sites.css">
     <link rel="stylesheet" href="/css/skribbl.css">
+   
     <!-- JavaScript -->
-
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
 	<script type="text/javascript" src="js/jquery-slim.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
@@ -47,10 +46,13 @@
     </nav>
     <!-- Navbar Ende -->
 
+    <!-- Headline Beginn -->
     <div class="headline">
         <h2 class="display-2">Spiel</h2>
     </div>
+    <!-- Headline Ende -->
 
+    <!-- PopUp Beginn -->
     <div id="popup-box">
         <div id="popup" class="overlayHidden">
             <h2 class="display-4">Spielername eingeben</h2>
@@ -67,7 +69,9 @@
             </form>
         </div>
     </div>
+    <!-- PopUp Ende -->
 
+    <!-- Spiel Beginn -->
     <table id="gameArea" class="gameHidden" border=1>
         <colgroup>
             <col width="25%">
@@ -76,6 +80,7 @@
         </colgroup>
 
         <tr>
+            <!-- Chat Beginn -->
             <td>
                 <div id="skribble-chat">
                     <h2 class="display-4 text-center">Chat-Feld</h2>
@@ -88,8 +93,10 @@
                     <button id="send">Send</button>
                 </div>
             </td>
+            <!-- Chat Ende -->
+
+            <!-- Canvas Beginn-->
             <td>
-                <!--Anfang Canvas Bereich-->
                 <div>
                     <div class="colors">
                         <div class="color black"></div>
@@ -100,23 +107,25 @@
                     </div>
                     <canvas id="canvas" class="whiteboard"></canvas>
                 </div>         
-
-                <!--Ende Canvas Bereich-->
-
             </td>
+            <!-- Canvas Ende-->
+
+            <!-- Spielinfos Beginn -->
             <td>
                 <div id="currentDrawsman">
                 </div>
                 <div id="currentPlayerList">
                 </div>
-                
-
              </td>
+             <!-- Spielinfos Ende -->
         </tr>
-
     </table>
+    <!-- Spiel Ende -->
+
     <script src="js/skribble.js"></script>
 </body>
+
+<!-- Footer Beginn -->
 <footer>
     <div class="footer-bottom">
         <div class="text-center">
@@ -126,6 +135,6 @@
         </div>
     </div>
 </footer>
-<!-- Footer -->
+<!-- Footer Ende-->
 
 </html>
