@@ -28,8 +28,9 @@ app.use(express.static(staticPath));
 
 
 var Players = [];
+var PlayersID=[];
 var online=0;
-var randomPlayer='';
+var currentDrawsman='';
 // Socket setup & pass server
 var io = socket(server);
 io.on('connection', (socket) => {
@@ -41,29 +42,34 @@ io.on('connection', (socket) => {
         online++;
         console.log('Online players : ' + online);
         console.log('New player connected : ' + data);
-        Players[Players.length] = data;
+        Players[Players.length] = data;   
+        PlayersID[PlayersID.length] = socket.id;
         
        //min. 2 players as text on the website
        // io.sockets.emit('playerList', Players);
         console.log(Players);
+        console.log(PlayersID);
+
         
         //drawsman was choose when minimum 2 player online
         //only for the first game
-        if(online == 2){
-            chooseDrawsman();
+        if(online >= 2){
+            startGame();
         }
-        startGame();
     });
+
     //choose a random drawsman from the Players array
     function chooseDrawsman(){
-        randomPlayer= Players.sample();
-        io.sockets.emit('draw', randomPlayer);
+        
+        currentDrawsman= Players.sample();
+        io.sockets.emit('draw', currentDrawsman);
     }
     //start the game and choose a random player who can draw 
     function startGame(){
+        chooseDrawsman();
         console.log('start game');
         io.sockets.emit('playerList', Players);
-        io.sockets.emit('drawsman', randomPlayer);
+        io.sockets.emit('drawsman', currentDrawsman);
     }
     
     //Getting a random value from an array
@@ -85,9 +91,22 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('typing', data);
     });
 
-    //disconnect the player
-    socket.on('disconnect', function () {
-        console.log('user disconnected');
+    //disconnect and remove the player
+    socket.on('disconnect', function (data) {
+        io.sockets.emit('disconnectThatSoc');
+        console.log('user disconnected'+socket.id);
+       for(var i = 0; i<PlayersID.length; i++){
+            if(socket.id==PlayersID[i]){
+                if(Players[i]==currentDrawsman){
+                    startGame();
+                }
+                PlayersID.splice(i, 1);
+                Players.splice(i,1);
+                console.log(Players);
+                console.log(PlayersID);
+                online--;
+            }
+       }
     });
 });
 
@@ -137,7 +156,6 @@ app.put('/add-word', (req, res) => {
     // Check if data is an array
     if (!Array.isArray(wordArray)) {
         res.status(400).json({message: 'Data must be a JSON array'});
-        msg = "Datei muss ein JSON-Array sein."
         return;
     }
 
@@ -145,7 +163,6 @@ app.put('/add-word', (req, res) => {
         // Check if data is in String format
         if (typeof wordArray[newWord] !== 'string') {
             res.status(400).json({message: 'Data in array must be Strings'});
-            msg = "Daten im Array müssen Strings sein."
             return;
         }
 
@@ -161,7 +178,7 @@ app.put('/add-word', (req, res) => {
         {
 
          console.log(wordArray[newWord] + ' is a duplicate');
-         msg = wordArray + " mindestens ein Wort ist schon vorhanden.";
+         msg = wordArray[newWord] + " is a duplicate";
 
         }
         else
@@ -172,7 +189,7 @@ app.put('/add-word', (req, res) => {
                     if (err) throw err;
                     
                     console.log(wordArray[newWord] + ' has been successfully added');
-                    msg = wordArray + " wurde(n) erfolgreich eingereicht.";
+                    msg = wordArray[newWord] + " has been successfully added";
                 }
             );
         }

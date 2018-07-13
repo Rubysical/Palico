@@ -76,10 +76,6 @@ socket.on('connect', function () {
     });
 });
 
-socket.on('disconnectThatSoc', function(){
-    socket.disconnect();
-});
-
 //PopUp-Fenster
 
 function openWindow() {
