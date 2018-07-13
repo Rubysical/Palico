@@ -34,6 +34,8 @@ var currentDrawsman='';
 var randomWord='';
 // Socket setup & pass server
 var io = socket(server);
+
+
 io.on('connection', (socket) => {
 
     console.log('made socket connection', socket.id);
@@ -56,11 +58,14 @@ io.on('connection', (socket) => {
     });
 
     
+    
+    
 
     //choose a random drawsman from the Players array
     function chooseDrawsman(){
         currentDrawsman= Players.sample();
         io.sockets.emit('draw', currentDrawsman);
+        Interval(currentDrawsman);
     }
     //start the game and choose a random player who can draw 
     function startGame(){
@@ -68,7 +73,12 @@ io.on('connection', (socket) => {
         console.log('start game');
         io.sockets.emit('playerList', Players);
         io.sockets.emit('drawsman', currentDrawsman);
+    }
 
+    function Interval(data){
+        if(data == currentDrawsman){
+            setInterval(startGame,10000);
+        }
     }
     
     //Getting a random value from an array
@@ -118,6 +128,10 @@ io.on('connection', (socket) => {
             }
        }
     });
+
+
+
+
 });
 
 

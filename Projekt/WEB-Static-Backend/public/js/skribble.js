@@ -64,6 +64,8 @@ socket.on('connect', function () {
             setTimeout(function(){socket.emit('randomWord', randomWord);}, 500);
             playerDraw();
             setTimeout(function(){message.placeholder='Zu zeichnen: ' + randomWord;},300);
+        }else{
+            message.placeholder='Bitte hier das Wort eintippen'
         }
     });  
    
