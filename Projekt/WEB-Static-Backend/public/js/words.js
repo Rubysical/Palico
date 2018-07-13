@@ -27,9 +27,7 @@ setTimeout(function(){
     showMessage();
 }, 300);
 
-}
-
-;
+};
 
 
 function showMessage() {  

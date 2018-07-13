@@ -2,6 +2,8 @@
 var socket = io.connect('http://localhost:3000');
 
 var playerNameArray = [];
+var randomWord='';
+
 socket.emit('sendPlayerArray',function(){
 });
 socket.on('playerArray', function(array){
@@ -40,13 +42,16 @@ socket.on('connect', function () {
             handle: handle.value
         });
         message.value = "";
+        
     });
 
     message.addEventListener('keypress', function(){
         socket.emit('typing', handle.value);
         
-    });
+    });   
+   
 
+    
     // Listen for events (client wartet auf methodenaufrufe vom Server)
     /*
     *random client was choosen from the server 
@@ -55,8 +60,16 @@ socket.on('connect', function () {
     */
     socket.on('draw', function(randomPlayerName){
         if(randomPlayerName==playerName.value){
+            getWord();
+            setTimeout(function(){socket.emit('randomWord', randomWord);}, 500);
             playerDraw();
+            setTimeout(function(){message.placeholder='Zu zeichnen: ' + randomWord;},300);
         }
+    });  
+   
+    
+    socket.on('winner',function(data){
+        output.innerHTML += '<p><strong>Winner is: ' + data + ': </strong></p>';
     });
 
     socket.on('chat', function(data){
@@ -74,6 +87,9 @@ socket.on('connect', function () {
     socket.on('playerList', function(player){
         currentPlayerList.innerHTML = '<h3>Aktuelle Spieler: </h3>' +'<h2>'+player+'</h2><br>';
     });
+
+    
+
 });
 
 //PopUp-Fenster
@@ -84,6 +100,7 @@ function openWindow() {
 
 var validCharacters = /[A-Za-z0-9]/;
 function closeWindow() {
+
     if(playerName.value === ""){
         playerName.placeholder='Bitte zuerst Name eingeben';
     }else{
@@ -105,6 +122,26 @@ function closeWindow() {
 }
 
 //=================FINISH CHAT=================//
+
+
+//=================START Random word=================//
+function getWord(){
+    
+    $.ajax({
+    type: 'GET',
+    url: 'http://localhost:3000/words',
+    success: function(data) {
+        length = data.length;
+        randomNumber = Math.floor((Math.random() * length));
+        randomWord=data[randomNumber];
+    }
+    
+});
+ 
+}
+
+//=================END Random word=================//
+
 
 
 //=================START WITHEBOARD=================//

@@ -31,12 +31,13 @@ var Players = [];
 var PlayersID=[];
 var online=0;
 var currentDrawsman='';
+var randomWord='';
 // Socket setup & pass server
 var io = socket(server);
 io.on('connection', (socket) => {
 
     console.log('made socket connection', socket.id);
-   
+    
     //Creat a new Player
     socket.on('NewPlayer', function(data) {
         online++;
@@ -49,18 +50,15 @@ io.on('connection', (socket) => {
        // io.sockets.emit('playerList', Players);
         console.log(Players);
         console.log(PlayersID);
-
-        
-        //drawsman was choose when minimum 2 player online
-        //only for the first game
-        if(online >= 2){
+        if(online==2){
             startGame();
         }
     });
 
+    
+
     //choose a random drawsman from the Players array
     function chooseDrawsman(){
-        
         currentDrawsman= Players.sample();
         io.sockets.emit('draw', currentDrawsman);
     }
@@ -70,20 +68,32 @@ io.on('connection', (socket) => {
         console.log('start game');
         io.sockets.emit('playerList', Players);
         io.sockets.emit('drawsman', currentDrawsman);
+
     }
     
     //Getting a random value from an array
     Array.prototype.sample = function(){
         return this[Math.floor(Math.random()*this.length)];
     }
+
+   socket.on('randomWord',function(word){
+        randomWord=word;
+        console.log('random word is: '+ word);
+    });
+
     socket.on('sendPlayerArray', function(){
         io.sockets.emit('playerArray', Players);
     });
 
     // Handle chat event
-    socket.on('chat', function(data){
-        //console.log(data);
-        io.sockets.emit('chat', data);
+    socket.on('chat', function(input){
+       console.log(input.message);
+        io.sockets.emit('chat', input);
+        if(randomWord==input.message){
+            console.log(input.handle +" is the winner!");
+            io.sockets.emit('winner', input.handle);
+            startGame();
+        }
     });
 
     // Handle typing event
