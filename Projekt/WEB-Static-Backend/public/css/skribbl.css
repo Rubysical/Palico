@@ -136,3 +136,7 @@ label{
   .show > .btn-outline-secondary.dropdown-toggle:focus {
 	box-shadow: 0 0 0 0.2rem red;
   }
+
+  .overlayHidden {
+	display: none;
+}
