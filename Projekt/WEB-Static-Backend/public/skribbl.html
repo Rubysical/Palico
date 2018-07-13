@@ -51,18 +51,22 @@
         <h2 class="display-2">Spiel</h2>
     </div>
 
-    <main>
+    <div id="popup-box">
         <div id="popup" class="overlayHidden">
-            <h2>Spielername</h2>
+            <h2 class="display-4">Spielername eingeben</h2>
             <form method="GET">
-                <label for="playerName">Um das Spiel spielen zu können, geben Sie einen Spielernamen an:
-                    <br> (Mit Buchstabe oder Zahl anfangen!)</label>
-                <input id="playerName" type="text" placeholder="Spielername eingeben"></input>
+                <label for="playerName">Um das Spiel spielen zu können, geben Sie bitte einen Spielernamen an
+                    <br> (muss mit einem Buchstaben oder Zahl anfangen):</label>
+                
+                <div class="input-style col-5 input-group mb-3">
+                    <input id="playerName" class="form-control" type="text" placeholder="Spielername eingeben" aria-label="Spielername eingeben" aria-describedby="basic-addon"></input>
+                    <div class="input-group-append"></div>
+                        <button id="play" class="btn btn-outline-secondary" type="button">Los geht's!</button>
+                    </div>
+                </div>
             </form>
-            <button id="play">Play!</button>
-
         </div>
-    </main>
+    </div>
 
     <table id="gameArea" class="gameHidden" border=1>
         <colgroup>
