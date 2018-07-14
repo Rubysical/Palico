@@ -65,8 +65,9 @@ socket.on('connect', function () {
             playerDraw();
             setTimeout(function(){message.placeholder='Zu zeichnen: ' + randomWord;},300);
         }else{
-            message.placeholder='Bitte hier das Wort eintippen'
+            setTimeout(function(){message.placeholder='Bitte hier das Wort eintippen';},300);
         }
+        
     });  
    
     
@@ -125,7 +126,23 @@ function closeWindow() {
 
 //=================FINISH CHAT=================//
 
+//COUNTDOWN
+function countdown(){
+var timeLeft = 10;
+var elem = document.getElementById('some_div');
+var timerId = setInterval(countdown, 1000);
 
+function countdown() {
+    if (timeLeft == -1) {
+        clearTimeout(timerId);
+        doSomething();
+    } else {
+        elem.innerHTML = timeLeft + ' seconds remaining';
+        timeLeft--;
+    }
+}
+//COUNTDOWN ENDE
+}
 //=================START Random word=================//
 function getWord(){
     

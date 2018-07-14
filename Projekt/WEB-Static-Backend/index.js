@@ -65,7 +65,7 @@ io.on('connection', (socket) => {
     function chooseDrawsman(){
         currentDrawsman= Players.sample();
         io.sockets.emit('draw', currentDrawsman);
-        Interval(currentDrawsman);
+        setTimeout(function(){startGame();},10000);
     }
     //start the game and choose a random player who can draw 
     function startGame(){
@@ -73,12 +73,7 @@ io.on('connection', (socket) => {
         console.log('start game');
         io.sockets.emit('playerList', Players);
         io.sockets.emit('drawsman', currentDrawsman);
-    }
-
-    function Interval(data){
-        if(data == currentDrawsman){
-            setInterval(startGame,10000);
-        }
+        
     }
     
     //Getting a random value from an array
@@ -102,7 +97,7 @@ io.on('connection', (socket) => {
         if(randomWord==input.message){
             console.log(input.handle +" is the winner!");
             io.sockets.emit('winner', input.handle);
-            startGame();
+            
         }
     });
 
