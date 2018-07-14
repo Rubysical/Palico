@@ -29,6 +29,7 @@ app.use(express.static(staticPath));
 
 var Players = [];
 var PlayersID=[];
+var PlayersPoints=[];
 var online=0;
 var currentDrawsman='';
 var randomWord='';
@@ -47,16 +48,20 @@ io.on('connection', (socket) => {
         console.log('New player connected : ' + data);
         Players[Players.length] = data;   
         PlayersID[PlayersID.length] = socket.id;
+        PlayersPoints[PlayersPoints.length]=0;
         
        //min. 2 players as text on the website
        // io.sockets.emit('playerList', Players);
         console.log(Players);
         console.log(PlayersID);
-        
+        console.log(PlayersPoints);
+
         startFirstGame();
     });
 
     var time=0;
+    var i=0;
+
     //choose a random drawsman from the Players array
     function chooseDrawsman(){
         io.sockets.emit('clearCanvas');
@@ -74,6 +79,7 @@ io.on('connection', (socket) => {
         }else{
             if(online==2){
                 chooseDrawsman();
+                roundInterval();
             }
             console.log('start game');
             outputForPlayer();
@@ -81,9 +87,8 @@ io.on('connection', (socket) => {
     }
 
     function outputForPlayer(){
-        io.sockets.emit('playerList', Players);
+        io.sockets.emit('playerList', Players,PlayersPoints);
         io.sockets.emit('drawsman', currentDrawsman);
-        io.sockets.emit('countdown',time);
     }
 
     function startGame(){
@@ -96,10 +101,44 @@ io.on('connection', (socket) => {
     }
 
     function roundInterval(){
-        setTimeout(function(){startGame();},(time*1000)+(time*100));
+        countdown(time);
+
+        setTimeout(function(){
+            startGame();
+        },(time*1000)+(time*100));
     }
 
+    var timeLeft=0;
+
+    function countdown(timer){
+        timeLeft = timer;
+        if(i<=time){
+            i++;
+            setTimeout(function(){
+                io.sockets.emit('timeLeft',timeLeft);
+                timeLeft--;
+                countdown(timeLeft);
+            },1000);
+        }else{
+            i=0;
+            countdown(timeLeft);
+        }
+    }
     function winner(nameOfThePlayer){
+        for(var i = 0; i<Players.length; i++){
+            if(Players[i]==nameOfThePlayer){
+                var currentPoints=PlayersPoints[i];
+                PlayersPoints[i]=currentPoints+10;
+            }
+            if(Players[i]==currentDrawsman){
+                var currentPoints=PlayersPoints[i];
+                PlayersPoints[i]=currentPoints+10;
+            }
+        }
+        console.log(Players);
+        console.log(PlayersID);
+        console.log(PlayersPoints);
+
         io.sockets.emit('winner', nameOfThePlayer);
         setTimeout(function(){startGame();},3000);
     }
@@ -150,9 +189,7 @@ io.on('connection', (socket) => {
                 outputForPlayer();
             }
        }
-
     });
-
 });
 
 

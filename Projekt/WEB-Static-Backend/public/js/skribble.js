@@ -118,45 +118,39 @@ socket.on('connect', function () {
     socket.on('typing', function(data){
         feedback.innerHTML = '<p><em>' + data + ' is typing a message...</em></p>';
     });
+
     socket.on('drawsman', function(drawsman){
         minTwoPlayer.className='overlayHidden'
         currentDrawsman.className='';
         currentDrawsman.innerHTML = '<h3>Aktuelle Zeichner: </h3>' +'<h2>'+drawsman+'</h2><br>';
     });
+
     //show the current players on the web site
-    socket.on('playerList', function(player){
+    socket.on('playerList', function(player,points){
         currentPlayerList.className='';
-        currentPlayerList.innerHTML = '<h3>Aktuelle Spieler: </h3>' +'<h2>'+player+'</h2><br>';
+        currentPlayerList.innerHTML = '<h3>Aktuelle Spieler: </h3><br>';
+        for(var i=0;i<player.length;i++){
+            currentPlayerList.innerHTML += '<h2>'+player[i]+': '+points[i]+'</h2><br>';  
+        }
     });  
+
     socket.on('clearChat',function(){
         output.innerHTML='';
     });
+
     socket.on('countdown',function(time){
         countdown(time);
+    });
+
+    socket.on('timeLeft',function(timeLeft){
         timer.className='';
+
+        timer.innerHTML = timeLeft + ' seconds remaining';
+
     });
 });
 
 //=================FINISH GAME=================//
-
-//=================START COUNTDOWN=================//
-
-function countdown(time){
-    var timeLeft = time;
-    var i=0
-    var timerId = setInterval(countdown, 1000);
-
-    function countdown() {
-        if (timeLeft == -1) {
-            clearTimeout(timerId);
-            doSomething();
-        } else {
-            timer.innerHTML = timeLeft + ' seconds remaining';
-            timeLeft--;
-        }
-    }
-}
-//=================FINISH COUNTDOWN=================//
 
 //=================START Random word=================//
 function getWord(){
