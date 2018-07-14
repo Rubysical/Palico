@@ -11,17 +11,7 @@ socket.on('playerArray', function(array){
     console.log(playerNameArray);
 });
 
-//=================START CHAT=================//
-// Query DOM
-var message = document.getElementById('message'),
-    handle = document.getElementById('handle'),
-    buttonSendMessage = document.getElementById('send'),
-    output = document.getElementById('output'),
-    feedback = document.getElementById('feedback'),
-    currentDrawsman = document.getElementById('currentDrawsman'),
-    currentPlayerList = document.getElementById('currentPlayerList');
-
-//PopUp Fenster
+//=================START PopUp Fenster=================//
 var	PlayBtn = document.getElementById('play'),
     popup = document.getElementById('popup'),
     playerName = document.getElementById('playerName'),
@@ -31,71 +21,7 @@ var	PlayBtn = document.getElementById('play'),
         closeWindow();
         
     });
-    
     openWindow();
-
-socket.on('connect', function () { 
-    // Emit events
-    buttonSendMessage.addEventListener('click', function(){
-        socket.emit('chat', {
-            message: message.value,
-            handle: handle.value
-        });
-        message.value = "";
-        
-    });
-
-    message.addEventListener('keypress', function(){
-        socket.emit('typing', handle.value);
-        
-    });   
-   
-
-    
-    // Listen for events (client wartet auf methodenaufrufe vom Server)
-    /*
-    *random client was choosen from the server 
-    *this player is the current draftsman
-    *the other client can not draw on the whiteboard
-    */
-    socket.on('draw', function(randomPlayerName){
-        if(randomPlayerName==playerName.value){
-            getWord();
-            setTimeout(function(){socket.emit('randomWord', randomWord);}, 500);
-            playerDraw();
-            setTimeout(function(){message.placeholder='Zu zeichnen: ' + randomWord;},300);
-        }else{
-            setTimeout(function(){message.placeholder='Bitte hier das Wort eintippen';},300);
-        }
-        
-    });  
-   
-    
-    socket.on('winner',function(data){
-        output.innerHTML += '<p><strong>Winner is: ' + data + ': </strong></p>';
-    });
-
-    socket.on('chat', function(data){
-        feedback.innerHTML = '';
-        output.innerHTML += '<p><strong>' + data.handle + ': </strong>' + data.message + '</p>';
-    });
-
-    socket.on('typing', function(data){
-        feedback.innerHTML = '<p><em>' + data + ' is typing a message...</em></p>';
-    });
-    socket.on('drawsman', function(drawsman){
-        currentDrawsman.innerHTML = '<h3>Aktuelle Zeichner: </h3>' +'<h2>'+drawsman+'</h2><br>';
-    });
-    //show the current players on the web site
-    socket.on('playerList', function(player){
-        currentPlayerList.innerHTML = '<h3>Aktuelle Spieler: </h3>' +'<h2>'+player+'</h2><br>';
-    });
-
-    
-
-});
-
-//PopUp-Fenster
 
 function openWindow() {
     popup.className = 'overlay';
@@ -123,50 +49,132 @@ function closeWindow() {
         }
     }
 }
+//=================FINISH PopUp Fenster=================//
 
-//=================FINISH CHAT=================//
 
-//COUNTDOWN
-function countdown(){
-var timeLeft = 10;
-var elem = document.getElementById('some_div');
-var timerId = setInterval(countdown, 1000);
+//=================START GAME=================//
+// Query DOM
+var message = document.getElementById('message'),
+    handle = document.getElementById('handle'),
+    buttonSendMessage = document.getElementById('send'),
+    output = document.getElementById('output'),
+    feedback = document.getElementById('feedback'),
+    timer = document.getElementById('timer');
+    minTwoPlayer = document.getElementById('minTwoPlayer'),
+    currentDrawsman = document.getElementById('currentDrawsman'),
+    currentPlayerList = document.getElementById('currentPlayerList');
 
-function countdown() {
-    if (timeLeft == -1) {
-        clearTimeout(timerId);
-        doSomething();
-    } else {
-        elem.innerHTML = timeLeft + ' seconds remaining';
-        timeLeft--;
+socket.on('connect', function () { 
+    // Emit events
+    buttonSendMessage.addEventListener('click', function(){
+        socket.emit('chat', {
+            message: message.value,
+            handle: handle.value
+        });
+        message.value = "";
+    });
+
+    message.addEventListener('keypress', function(){
+        socket.emit('typing', handle.value);
+        
+    });   
+    
+    // Listen for events (client wartet auf methodenaufrufe vom Server)
+    /*
+    *random client was choosen from the server 
+    *this player is the current draftsman
+    *the other client can not draw on the whiteboard
+    */
+    socket.on('draw', function(randomPlayerName){
+        if(randomPlayerName==playerName.value){
+            getWord();
+            setTimeout(function(){socket.emit('randomWord', randomWord);}, 500);
+            playerDraw();
+            setTimeout(function(){message.placeholder='Zu zeichnen: ' + randomWord;},300);
+        }else{
+            playerNotDraw();
+            setTimeout(function(){message.placeholder='Bitte hier das Wort eintippen';},300);
+        }
+        
+    });  
+   
+    socket.on('minTwoPlayer',function(){
+        minTwoPlayer.innerHTML='<p>Mindestens 2 Spieler müssen Online sein</p>'
+        minTwoPlayer.className=''
+        timer.className='overlayHidden';
+        currentDrawsman.className='overlayHidden';
+        currentPlayerList.className='overlayHidden';
+    });
+
+    socket.on('winner',function(data){
+        output.innerHTML += '<p><strong>Winner is: ' + data + ': </strong></p>';
+    });
+
+    socket.on('chat', function(data){
+        feedback.innerHTML = '';
+        output.innerHTML += '<p><strong>' + data.handle + ': </strong>' + data.message + '</p>';
+    });
+
+    socket.on('typing', function(data){
+        feedback.innerHTML = '<p><em>' + data + ' is typing a message...</em></p>';
+    });
+    socket.on('drawsman', function(drawsman){
+        minTwoPlayer.className='overlayHidden'
+        currentDrawsman.className='';
+        currentDrawsman.innerHTML = '<h3>Aktuelle Zeichner: </h3>' +'<h2>'+drawsman+'</h2><br>';
+    });
+    //show the current players on the web site
+    socket.on('playerList', function(player){
+        currentPlayerList.className='';
+        currentPlayerList.innerHTML = '<h3>Aktuelle Spieler: </h3>' +'<h2>'+player+'</h2><br>';
+    });  
+    socket.on('clearChat',function(){
+        output.innerHTML='';
+    });
+    socket.on('countdown',function(time){
+        countdown(time);
+        timer.className='';
+    });
+});
+
+//=================FINISH GAME=================//
+
+//=================START COUNTDOWN=================//
+
+function countdown(time){
+    var timeLeft = time;
+    var i=0
+    var timerId = setInterval(countdown, 1000);
+
+    function countdown() {
+        if (timeLeft == -1) {
+            clearTimeout(timerId);
+            doSomething();
+        } else {
+            timer.innerHTML = timeLeft + ' seconds remaining';
+            timeLeft--;
+        }
     }
 }
-//COUNTDOWN ENDE
-}
+//=================FINISH COUNTDOWN=================//
+
 //=================START Random word=================//
 function getWord(){
-    
     $.ajax({
-    type: 'GET',
-    url: 'http://localhost:3000/words',
-    success: function(data) {
-        length = data.length;
-        randomNumber = Math.floor((Math.random() * length));
-        randomWord=data[randomNumber];
-    }
-    
-});
- 
+        type: 'GET',
+        url: 'http://localhost:3000/words',
+        success: function(data) {
+            length = data.length;
+            randomNumber = Math.floor((Math.random() * length));
+            randomWord=data[randomNumber];
+        }
+    });
 }
 
 //=================END Random word=================//
 
-
-
 //=================START WITHEBOARD=================//
-
 'use strict';
-
 var socket = io();
 var canvas = document.getElementsByClassName('whiteboard')[0];
 var colors = document.getElementsByClassName('color');
@@ -180,7 +188,12 @@ function playerDraw(){
     canvas.addEventListener('mouseup', onMouseUp, false);
     canvas.addEventListener('mouseout', onMouseUp, false);
     canvas.addEventListener('mousemove', throttle(onMouseMove, 10), false);  
-   
+}
+function playerNotDraw(){
+    canvas.removeEventListener('mousedown', onMouseDown, false);
+    canvas.removeEventListener('mouseup', onMouseUp, false);
+    canvas.removeEventListener('mouseout', onMouseUp, false);
+    canvas.removeEventListener('mousemove', throttle(onMouseMove, 10), false);  
 }
 
 for (var i = 0; i < colors.length; i++){
@@ -191,6 +204,9 @@ socket.on('drawing', onDrawingEvent);
 window.addEventListener('resize', onResize, false);
 onResize();
 
+socket.on('clearCanvas',function(){
+     context.clearRect(0,0,canvas.width,canvas.height);   
+});
 
 function drawLine(x0, y0, x1, y1, color, emit){
     context.beginPath();

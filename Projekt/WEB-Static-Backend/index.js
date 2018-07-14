@@ -52,30 +52,58 @@ io.on('connection', (socket) => {
        // io.sockets.emit('playerList', Players);
         console.log(Players);
         console.log(PlayersID);
-        if(online==2){
-            startGame();
-        }
+        
+        startFirstGame();
     });
 
-    
-    
-    
-
+    var time=0;
     //choose a random drawsman from the Players array
     function chooseDrawsman(){
+        io.sockets.emit('clearCanvas');
+        io.sockets.emit('clearChat');
+        time = 10; //time in secends for one round
         currentDrawsman= Players.sample();
         io.sockets.emit('draw', currentDrawsman);
-        setTimeout(function(){startGame();},10000);
+       
+        roundInterval();
     }
     //start the game and choose a random player who can draw 
-    function startGame(){
-        chooseDrawsman();
-        console.log('start game');
+    function startFirstGame(){
+        if(online<2){
+            io.sockets.emit('minTwoPlayer');
+        }else{
+            if(online==2){
+                chooseDrawsman();
+            }
+            console.log('start game');
+            outputForPlayer();
+        }
+    }
+
+    function outputForPlayer(){
         io.sockets.emit('playerList', Players);
         io.sockets.emit('drawsman', currentDrawsman);
-        
+        io.sockets.emit('countdown',time);
     }
-    
+
+    function startGame(){
+        if(online<2){
+            startFirstGame();
+        }else{
+            chooseDrawsman();
+            outputForPlayer();
+        }       
+    }
+
+    function roundInterval(){
+        setTimeout(function(){startGame();},(time*1000)+(time*100));
+    }
+
+    function winner(nameOfThePlayer){
+        io.sockets.emit('winner', nameOfThePlayer);
+        setTimeout(function(){startGame();},3000);
+    }
+
     //Getting a random value from an array
     Array.prototype.sample = function(){
         return this[Math.floor(Math.random()*this.length)];
@@ -96,8 +124,7 @@ io.on('connection', (socket) => {
         io.sockets.emit('chat', input);
         if(randomWord==input.message){
             console.log(input.handle +" is the winner!");
-            io.sockets.emit('winner', input.handle);
-            
+            winner(input.handle);            
         }
     });
 
@@ -113,19 +140,18 @@ io.on('connection', (socket) => {
        for(var i = 0; i<PlayersID.length; i++){
             if(socket.id==PlayersID[i]){
                 if(Players[i]==currentDrawsman){
-                    startGame();
+                   // startGame();
                 }
                 PlayersID.splice(i, 1);
                 Players.splice(i,1);
                 console.log(Players);
                 console.log(PlayersID);
                 online--;
+                outputForPlayer();
             }
        }
+
     });
-
-
-
 
 });
 
