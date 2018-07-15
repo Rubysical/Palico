@@ -1,15 +1,20 @@
 /*CSS spezifisch für die Highscore-Unterseite*/
+
+/*Tabellen Abstände*/
 .table-style {
 	margin-top: 30px;
 	margin-bottom: 30px;
 }
 
+/*Größe Tabelle*/
 #highscore_tab {
 	width: 60%;
 	margin-left: 20%;
 	margin-right: 20%;
 	
 }
+
+/*Tabellenüberschriften*/
 th{
 	color:white;
 	background-color: #343a40;

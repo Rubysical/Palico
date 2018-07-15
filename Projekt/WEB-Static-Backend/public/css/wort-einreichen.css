@@ -1,4 +1,6 @@
 /*CSS spezifisch für die Wort-einreichen-Unterseite*/
+
+/*Feedback (un)erfolgreich zu Wort Eingaben*/
 #word{
 	text-align: center;
 	
@@ -58,6 +60,7 @@
 	box-shadow: 0 0 0 0.2rem red;
 	}
 	
+	/* Satz über den inputs */
 	#wort-text{
 		text-align: center;
 		margin-top: 10px;

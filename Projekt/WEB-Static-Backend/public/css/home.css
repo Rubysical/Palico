@@ -1,4 +1,6 @@
 /* CSS spezifisch für die Home-Unterseite*/
+
+/*Neu hier?-Überschrift*/
 .subheadline{
 	width:70%;
 	margin-left: 15%;
@@ -6,6 +8,8 @@
 	margin-top: 25px;
 }
 
+
+/*Für Collapsable-Fragen */
 .frage-box {
 	margin-bottom: 30px;
 }
@@ -64,6 +68,7 @@
     margin-bottom: 30px;
 }
 
+/*Textanpassungen für die Antworten zu den Fragen*/
 p{
 	padding-top: 10px;
 	font-size: 1.2rem;

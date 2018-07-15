@@ -2,23 +2,23 @@
  * wie z.B. Navigation, Überschrift etc.
 */
 
-/* Navigation Beginn*/
+/* Navigation*/
 .nav-color{
     background-color: red; 
 }
-/* Navigation Ende*/
 
 
-/* Überschrift Beginn (aus Bootstrap 4.1.0)*/
+
+/* Überschrift*/
 .headline{
     color:red;
     text-align:center;
     border-bottom: 1px solid red;
     padding-bottom: 10px;
 }
-/* Überschrift Ende*/
 
-/*Footer Beginn*/
+
+/*Footer*/
 .footer-bottom {
     background-color: #343a40;
     width: 100%;
