@@ -5,8 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const fs = require('fs');
-var countdownBool = false;
-var countdownBool2 = false;
+
 var msg;
 
 // SOCKET
@@ -65,7 +64,7 @@ io.on('connection', (socket) => {
 
     //choose a random drawsman from the Players array
     function chooseDrawsman(){
-        timeLeft = time;
+        t = time;
         i = 0;
         io.sockets.emit('clearCanvas');
         io.sockets.emit('clearChat');
@@ -73,9 +72,9 @@ io.on('connection', (socket) => {
         currentDrawsman= PlayersName.sample();
         io.sockets.emit('draw', currentDrawsman);
        
-        countdownBool = true;
-        roundInterval();
-        console.log(countdownBool);
+        
+        roundInterval(t);
+        
         
        
        setTimeout(function(){
@@ -87,11 +86,11 @@ io.on('connection', (socket) => {
     function startFirstGame(){
         if(online<2){
             io.sockets.emit('minTwoPlayer');
-            countdownBool2 = true;
+            
         }else{
             if(online==2){
                 chooseDrawsman();
-                countdownBool2 = false;
+                
                 //roundInterval();
             }
             console.log('start game');
@@ -131,17 +130,16 @@ io.on('connection', (socket) => {
         }       
     }
 
-    function roundInterval(){
-        countdown(time);
+    function roundInterval(t){
+        countdown(t);
     }
     
-    var timeLeft=0;
     function countdown(timer){
         timeLeft = timer;
         if(i<=time){
             i++;
             setTimeout(function(){
-                if(countdownBool2 == false){io.sockets.emit('timeLeft',timeLeft);}
+                io.sockets.emit('timeLeft',timeLeft);
                 
                 timeLeft--;
                 countdown(timeLeft);
