@@ -23,7 +23,6 @@ var	PlayBtn = document.getElementById('play'),
 
     PlayBtn.addEventListener('click', function(){
         closeWindow();
-        
     });
     openWindow();
 
@@ -99,7 +98,7 @@ socket.on('connect', function () {
                 messageDrawsman.className="";
                 message.className="overlayHidden";
                 messageDrawsman.placeholder='Zu zeichnen: ' + randomWord;
-
+                buttonSendMessage.removeEventListener('onclick');
         },300);
         }else{
             playerNotDraw();
@@ -120,7 +119,7 @@ socket.on('connect', function () {
     });
 
     socket.on('winner',function(winner){
-        output.innerHTML += '<p><strong>Winner is: ' + winner + ': </strong></p>';
+        output.innerHTML += '<p><strong>Winner is: ' + winner + '</strong></p>';
         //=================START Push Highscore=================//
         var name;
         var points;

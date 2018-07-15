@@ -168,8 +168,6 @@ io.on('connection', (socket) => {
         io.sockets.emit('playerNameArray', PlayersName);
         io.sockets.emit('playerPointsArray', PlayersPoints);
         io.sockets.emit('winner', nameOfThePlayer);
-
-        //setTimeout(function(){startGame();},3000);
     }
 
     //Getting a random value from an array
@@ -208,7 +206,7 @@ io.on('connection', (socket) => {
        for(var i = 0; i<PlayersID.length; i++){
             if(socket.id==PlayersID[i]){
                 if(PlayersName[i]==currentDrawsman){
-                   // startGame();
+                   startGame();
                 }
                 PlayersID.splice(i, 1);
                 PlayersName.splice(i,1);
