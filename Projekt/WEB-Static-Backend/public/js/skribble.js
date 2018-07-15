@@ -114,11 +114,22 @@ socket.on('connect', function () {
         
     });
 
-    socket.on('winner',function(winner,arrayName){
+    socket.on('winner',function(winner){
         output.innerHTML += '<p><strong>Winner is: ' + winner + ': </strong></p>';
         var name;
         var points;
         var jsonArray={};
+        //sort points from max to min
+        for(var i=0; i<playerNameArray.length;i++){
+            if(playerNameArray[i+1]==null){
+
+            }else{
+                if(playerPointsArray[i]<playerPointsArray[i+1]){
+                    swap(i,i+1);
+                }
+
+            }
+        }
 
         for(var i=0;i<playerNameArray.length; i++){
             name = playerNameArray[i];                

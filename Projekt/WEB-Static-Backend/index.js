@@ -98,8 +98,31 @@ io.on('connection', (socket) => {
     }
 
     function outputForPlayer(){
+        sortArray();
         io.sockets.emit('playerList', PlayersName,PlayersPoints);
         io.sockets.emit('drawsman', currentDrawsman);
+    }
+
+    function sortArray(){
+        for(var i=0; i<PlayersName.length;i++){
+            if(PlayersName[i+1]==null){
+
+            }else{
+                if(PlayersPoints[i]<PlayersPoints[i+1]){
+                    swap(i,i+1);
+                }
+
+            }
+        }
+    }
+    
+    function swap(index,index2){
+        var tempName=PlayersName[index2];
+        var tempPoints=PlayersPoints[index2];
+        PlayersName[index2]=PlayersName[index];
+        PlayersPoints[index2]=PlayersPoints[index];
+        PlayersName[index]=tempName;
+        PlayersPoints[index]=tempPoints;
     }
 
     function startGame(){
@@ -146,9 +169,10 @@ io.on('connection', (socket) => {
         console.log(PlayersID);
         console.log(PlayersPoints);
 
-        io.sockets.emit('winner', nameOfThePlayer,PlayersName);
         io.sockets.emit('playerNameArray', PlayersName);
         io.sockets.emit('playerPointsArray', PlayersPoints);
+        io.sockets.emit('winner', nameOfThePlayer);
+
         //setTimeout(function(){startGame();},3000);
     }
 
@@ -172,6 +196,7 @@ io.on('connection', (socket) => {
         io.sockets.emit('chat', input);
         if(randomWord==input.message){
             console.log(input.handle +" is the winner!");
+            sortArray();
             winner(input.handle);            
         }
     });
@@ -226,14 +251,11 @@ app.post('/highscore', (req, res) => {
     for (let user in newScore) {
         if (Number.isInteger(newScore[user])) {
             if (!(highscores[user] > newScore[user])) highscores[user] = newScore[user];
-        
-            //newScore.push(newScore[user]); 
-            
+                    
             const json = JSON.stringify(newScore);
             fs.writeFile ("./resources/highscores.json", json, (err) => {
                     if (err) throw err;
                     
-                    console.log(newScore[user] + ' has been successfully added');
                     msg = newScore[user] + " has been successfully added";
                 }
             );
