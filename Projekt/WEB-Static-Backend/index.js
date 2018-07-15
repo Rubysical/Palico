@@ -66,7 +66,7 @@ io.on('connection', (socket) => {
     //choose a random drawsman from the Players array
     function chooseDrawsman(){
         timeLeft = time;
-        i = 0;
+        i = 1;
         io.sockets.emit('clearCanvas');
         io.sockets.emit('clearChat');
         //time = 10; //time in secends for one round
