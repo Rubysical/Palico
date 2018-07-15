@@ -1,5 +1,6 @@
 
 $(document).ready(function(){
+    //Wenn die Seite aufgerufen wird, hole dir die aktuelle Highscore
     getScore();
 });    
 
@@ -7,6 +8,7 @@ var sortJson={};
 var arrayPlayerName=[];
 var arrayPlayerPoints=[];
 
+//Hol dir mit GET den Highscore
 function getScore(){
     $("#highscore tr").remove(); 
     
@@ -32,7 +34,7 @@ function getScore(){
     }
     });
 }
-
+//Sortiere Array Absteigend nach Punkten
 function sortArray(){
     for(var i=0; i<=arrayPlayerName.length;i++){
         if(arrayPlayerPoints[i]<arrayPlayerPoints[i+1]){
@@ -41,7 +43,7 @@ function sortArray(){
         }
     }
 }
-
+//Swap nach Punkten
 function swap(index,index2){
     var tempName=arrayPlayerName[index2];
     var tempPoints=arrayPlayerPoints[index2];

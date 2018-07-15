@@ -167,6 +167,7 @@ io.on('connection', (socket) => {
         io.sockets.emit('playerNameArray', PlayersName);
         io.sockets.emit('playerPointsArray', PlayersPoints);
         io.sockets.emit('winner', nameOfThePlayer);
+        startGame();
     }
 
     //Getting a random value from an array

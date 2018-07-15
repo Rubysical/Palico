@@ -1,10 +1,12 @@
 $(document).ready(function(){
 
+    //Wenn der Button geklickt wird, sende das Wort ein
     $('#button').on('click',function(){
         myFunction();
     });
 });
 
+//Wort(er) mit PUT dem Server übergeben
 function myFunction()
 {        
 var $word = $('#textfield').val();
@@ -27,7 +29,7 @@ setTimeout(function(){
 
 };
 
-
+//Hol dir die Information mit GET vom Server ob das einfügen funktioniert hat
 function showMessage() {  
         $.ajax({
             type: 'GET',
