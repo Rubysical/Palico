@@ -1,6 +1,70 @@
 /* CSS spezifisch für die Home-Unterseite*/
-.teamvorstellung
-{
-	text-align: center;
-	margin-top: 30px;
+.subheadline{
+	width:70%;
+	margin-left: 15%;
+	margin-bottom: 30px;
+	margin-top: 25px;
+}
+
+.frage-box {
+	margin-bottom: 30px;
+}
+
+.frage {
+    background-color: #343a40;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width:70%;
+    border:none;
+    text-align: left;
+   
+    font-size: 2.2rem;
+	font-weight: 300;
+	line-height: 1.2;
+	margin-left: 15%;
+	
+}
+
+
+.active2, .frage:hover {
+    background-color: red;
+}
+
+.frage:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.active2:after {
+    content: "\2212";
+}
+
+
+.inhalt {
+    padding: 0 18px;
+	max-height: 0;
+	width:70%;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+	background-color: white;
+	margin-left: 15%;
+	border-left: 1px solid #343a40;
+	border-right: 1px solid #343a40;
+}
+
+#inhalt-letztes {
+	border-bottom: 1px solid #343a40;
+}
+
+#inhalt-box {
+    margin-bottom: 30px;
+}
+
+p{
+	padding-top: 10px;
+	font-size: 1.2rem;
 }

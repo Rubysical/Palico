@@ -56,4 +56,10 @@
   .btn-outline-secondary:not(:disabled):not(.disabled):active:focus, .btn-outline-secondary:not(:disabled):not(.disabled).active:focus,
   .show > .btn-outline-secondary.dropdown-toggle:focus {
 	box-shadow: 0 0 0 0.2rem red;
-  }
+	}
+	
+	#wort-text{
+		text-align: center;
+		margin-top: 10px;
+		font-size: 1.2rem;
+	}
