@@ -5,7 +5,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const fs = require('fs');
-
+var countdownBool = false;
+var countdownBool2 = false;
 var msg;
 
 // SOCKET
@@ -59,27 +60,37 @@ io.on('connection', (socket) => {
         startFirstGame();
     });
 
-    var time=0;
+    var time=10;
     var i=0;
 
     //choose a random drawsman from the Players array
     function chooseDrawsman(){
         io.sockets.emit('clearCanvas');
         io.sockets.emit('clearChat');
-        time = 10; //time in secends for one round
+        //time = 10; //time in secends for one round
         currentDrawsman= Players.sample();
         io.sockets.emit('draw', currentDrawsman);
-       
+       if(countdownBool == false){
+        countdownBool = true;
         roundInterval();
+        console.log(countdownBool);
+        
+       }
+       setTimeout(function(){
+        startGame();
+    },(time*1000)+(time*100));
+        
     }
     //start the game and choose a random player who can draw 
     function startFirstGame(){
         if(online<2){
             io.sockets.emit('minTwoPlayer');
+            countdownBool2 = true;
         }else{
             if(online==2){
                 chooseDrawsman();
-                roundInterval();
+                countdownBool2 = false;
+                //roundInterval();
             }
             console.log('start game');
             outputForPlayer();
@@ -103,9 +114,7 @@ io.on('connection', (socket) => {
     function roundInterval(){
         countdown(time);
 
-        setTimeout(function(){
-            startGame();
-        },(time*1000)+(time*100));
+        
     }
 
     var timeLeft=0;
@@ -115,13 +124,14 @@ io.on('connection', (socket) => {
         if(i<=time){
             i++;
             setTimeout(function(){
-                io.sockets.emit('timeLeft',timeLeft);
+                if(countdownBool2 == false){io.sockets.emit('timeLeft',timeLeft);}
+                
                 timeLeft--;
                 countdown(timeLeft);
             },1000);
         }else{
             i=0;
-            countdown(timeLeft);
+            countdown(time);
         }
     }
     function winner(nameOfThePlayer){
@@ -140,7 +150,7 @@ io.on('connection', (socket) => {
         console.log(PlayersPoints);
 
         io.sockets.emit('winner', nameOfThePlayer);
-        setTimeout(function(){startGame();},3000);
+        //setTimeout(function(){startGame();},3000);
     }
 
     //Getting a random value from an array
