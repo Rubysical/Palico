@@ -85,6 +85,14 @@ io.on('connection', (socket) => {
             outputForPlayer();
         }
     }
+    function startGame(){
+        if(online<2){
+            startFirstGame();
+        }else{
+            chooseDrawsman();
+            outputForPlayer();
+        }       
+    }
 
     function outputForPlayer(){
         sortArray();
@@ -109,14 +117,7 @@ io.on('connection', (socket) => {
         PlayersPoints[index]=tempPoints;
     }
 
-    function startGame(){
-        if(online<2){
-            startFirstGame();
-        }else{
-            chooseDrawsman();
-            outputForPlayer();
-        }       
-    }
+    
 
     function countdown(timer){
         timeLeft = timer;
@@ -146,7 +147,7 @@ io.on('connection', (socket) => {
         io.sockets.emit('playerNameArray', PlayersName);
         io.sockets.emit('playerPointsArray', PlayersPoints);
         io.sockets.emit('winner', nameOfThePlayer);
-        startGame();
+        setTimeout(function(){ startGame()},3000);
     }
 
     //Getting a random value from an array
