@@ -196,6 +196,8 @@ function getWord(){
 'use strict';
 var socket = io();
 var canvas = document.getElementsByClassName('whiteboard')[0];
+canvas.height=100;
+canvas.width=100;
 var colors = document.getElementsByClassName('color');
 var context = canvas.getContext('2d');
 var current = {
