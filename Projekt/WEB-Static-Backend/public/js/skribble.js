@@ -59,6 +59,7 @@ function closeWindow() {
 //=================START GAME=================//
 // Query DOM
 var message = document.getElementById('message'),
+    messageDrawsman = document.getElementById('messageDrawsman'),
     handle = document.getElementById('handle'),
     buttonSendMessage = document.getElementById('send'),
     output = document.getElementById('output'),
@@ -94,9 +95,16 @@ socket.on('connect', function () {
             getWord();
             setTimeout(function(){socket.emit('randomWord', randomWord);}, 500);
             playerDraw();
-            setTimeout(function(){message.placeholder='Zu zeichnen: ' + randomWord;},300);
+            setTimeout(function(){
+                messageDrawsman.className="";
+                message.className="overlayHidden";
+                messageDrawsman.placeholder='Zu zeichnen: ' + randomWord;
+
+        },300);
         }else{
             playerNotDraw();
+            messageDrawsman.className="overlayHidden";
+            message.className="";
             setTimeout(function(){message.placeholder='Bitte hier das Wort eintippen';},300);
         }
         
