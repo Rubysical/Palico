@@ -78,12 +78,18 @@
             <col width="50%">
             <col width="25%">
         </colgroup>
-
+        <thead>
+            <tr>
+                <th>Chat</th>
+                <th>Whiteboard</th>
+                <th>Infos</th>
+            </tr>
+        </thead>
         <tr>
             <!-- Chat Beginn -->
             <td>
                 <div id="skribble-chat">
-                    <h2 class="display-4 text-center">Chat-Feld</h2>
+                   
                     <div id="chat-window">
                         <div id="output"></div>
                         <div id="feedback"></div>
@@ -100,11 +106,7 @@
             <td>
                 <div>
                     <div class="colors">
-                        <div class="color black"></div>
-                        <div class="color red"></div>
-                        <div class="color green"></div>
-                        <div class="color blue"></div>
-                        <div class="color yellow"></div>
+                        <div class="color black"></div><div class="color red"></div><div class="color green"></div><div class="color blue"></div><div class="color yellow"></div>
                     </div>
                     <canvas id="canvas" class="whiteboard"></canvas>
                 </div>         

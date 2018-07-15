@@ -13,7 +13,10 @@
   /**
     * Canvas
   */
-  
+  #gameArea{
+    border:none;
+  }
+
   .whiteboard {
     width: 100%;
     height: 50%;
@@ -23,18 +26,18 @@
     right: 0;
     bottom: 0;
     top: 0;
-    border:2px solid black; 
+    
     cursor:crosshair;
   }
   
   .colors {
-    position: static;
+    border:1px solid grey;
   }
   
   .color {
     display: inline-block;
     height: 48px;
-    width: 48px;
+    width: 20%;
   }
   
   .color.black { background-color: black; }
@@ -52,15 +55,12 @@
 }
 
 #skribble-chat{
-    max-width: 600px;
-    margin: 30px auto;
-    border: 1px solid #ddd;
-    box-shadow: 1px 3px 5px rgba(0,0,0,0.05);
-    border-radius: 2px;
+  width: 100%;
+  
 }
 
-#chat-window{
-    height: 260px;
+#chat-window {
+  height: 520px;
     overflow: auto;
     background: #f9f9f9;
 }
@@ -145,4 +145,11 @@ label{
   text-align: center;
   margin-top: 10px;
   font-size: 1.2rem;
+}
+
+th{
+  font-size: 3.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+  text-align:center;
 }
