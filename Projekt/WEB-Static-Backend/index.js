@@ -146,7 +146,7 @@ io.on('connection', (socket) => {
         io.sockets.emit('playerNameArray', PlayersName);
         io.sockets.emit('playerPointsArray', PlayersPoints);
         io.sockets.emit('winner', nameOfThePlayer);
-        setTimeout(function(){startGame();},3000);
+        startGame();
     }
 
     //Getting a random value from an array
