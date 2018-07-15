@@ -105,13 +105,8 @@ io.on('connection', (socket) => {
 
     function sortArray(){
         for(var i=0; i<PlayersName.length;i++){
-            if(PlayersName[i+1]==null){
-
-            }else{
-                if(PlayersPoints[i]<PlayersPoints[i+1]){
-                    swap(i,i+1);
-                }
-
+            if(PlayersPoints[i]<PlayersPoints[i+1]){
+                swap(i,i+1);
             }
         }
     }
@@ -155,6 +150,7 @@ io.on('connection', (socket) => {
         }
     }
     function winner(nameOfThePlayer){
+        sortArray();
         for(var i = 0; i<PlayersName.length; i++){
             if(PlayersName[i]==nameOfThePlayer){
                 var currentPoints=PlayersPoints[i];
@@ -196,7 +192,6 @@ io.on('connection', (socket) => {
         io.sockets.emit('chat', input);
         if(randomWord==input.message){
             console.log(input.handle +" is the winner!");
-            sortArray();
             winner(input.handle);            
         }
     });
@@ -217,7 +212,9 @@ io.on('connection', (socket) => {
                 }
                 PlayersID.splice(i, 1);
                 PlayersName.splice(i,1);
+                PlayersPoints.splice(i,1);
                 console.log(PlayersName);
+                console.log(PlayersPoints);
                 console.log(PlayersID);
                 online--;
                 outputForPlayer();

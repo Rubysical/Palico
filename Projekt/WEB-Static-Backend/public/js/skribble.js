@@ -10,11 +10,9 @@ socket.emit('sendPlayerArray',function(){
 
 socket.on('playerNameArray', function(array){
     playerNameArray=array;
-    console.log(playerNameArray);
 });
 socket.on('playerPointsArray', function(array){
     playerPointsArray=array;
-    console.log(playerPointsArray);
 });
 
 //=================START PopUp Fenster=================//
@@ -103,34 +101,23 @@ socket.on('connect', function () {
         }
         
     });  
-   
+   //user output for "minimum two player must be online"
     socket.on('minTwoPlayer',function(){
         minTwoPlayer.innerHTML='<p>Mindestens 2 Spieler müssen Online sein</p>'
         minTwoPlayer.className=''
         timer.className='overlayHidden';
         currentDrawsman.className='overlayHidden';
         currentPlayerList.className='overlayHidden';
-        timer.className = 'overlayHidden';
-        
+        timer.className = 'overlayHidden'; 
     });
 
     socket.on('winner',function(winner){
         output.innerHTML += '<p><strong>Winner is: ' + winner + ': </strong></p>';
+        //=================START Push Highscore=================//
         var name;
         var points;
         var jsonArray={};
-        //sort points from max to min
-        for(var i=0; i<playerNameArray.length;i++){
-            if(playerNameArray[i+1]==null){
-
-            }else{
-                if(playerPointsArray[i]<playerPointsArray[i+1]){
-                    swap(i,i+1);
-                }
-
-            }
-        }
-
+        
         for(var i=0;i<playerNameArray.length; i++){
             name = playerNameArray[i];                
             points= playerPointsArray[i];
@@ -144,8 +131,7 @@ socket.on('connect', function () {
                 url: 'http://localhost:3000/highscore',
                 data: json
             });
-            
-        
+        //=================END Push Highscore=================//
     });
 
     socket.on('chat', function(data){
@@ -206,12 +192,6 @@ function getWord(){
 //=================END Random word=================//
 
 
-//=================START Push Highscore=================//
-
-
-//=================END Push Highscore=================//
-
-
 //=================START WITHEBOARD=================//
 'use strict';
 var socket = io();
@@ -222,12 +202,14 @@ var current = {
     color: 'black'
 };
 var drawing = false;
+//only the drawsman can draw on the witheboard
 function playerDraw(){
     canvas.addEventListener('mousedown', onMouseDown, false);
     canvas.addEventListener('mouseup', onMouseUp, false);
     canvas.addEventListener('mouseout', onMouseUp, false);
     canvas.addEventListener('mousemove', throttle(onMouseMove, 10), false);  
 }
+//other player can not draw on the witheboard
 function playerNotDraw(){
     canvas.removeEventListener('mousedown', onMouseDown, false);
     canvas.removeEventListener('mouseup', onMouseUp, false);
@@ -305,9 +287,17 @@ function onDrawingEvent(data){
 }
 // make the canvas fill its parent
 function onResize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
+   // canvas.width = window.innerWidth;
+   // canvas.height = window.innerHeight;
+   if (canvas.width  < window.innerWidth)
+    {
+        canvas.width  = window.innerWidth;
+    }
 
+    if (canvas.height < window.innerHeight)
+    {
+        canvas.height = window.innerHeight;
+    }
+}
 
 //=================FINISH WITHEBOARD=================//
