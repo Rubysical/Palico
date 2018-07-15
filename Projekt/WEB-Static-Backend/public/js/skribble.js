@@ -146,15 +146,15 @@ socket.on('connect', function () {
     socket.on('drawsman', function(drawsman){
         minTwoPlayer.className='overlayHidden'
         currentDrawsman.className='';
-        currentDrawsman.innerHTML = '<h3>Aktuelle Zeichner: </h3>' +'<h2>'+drawsman+'</h2><br>';
+        currentDrawsman.innerHTML = '<h2 class="currentPlayers">Aktuelle(r) Zeichner(in): </h2>' +'<h3 class="aktuelleSpieler">'+drawsman+'</h3><br>';
     });
 
     //show the current players on the web site
     socket.on('playerList', function(player,points){
         currentPlayerList.className='';
-        currentPlayerList.innerHTML = '<h3>Aktuelle Spieler: </h3><br>';
+        currentPlayerList.innerHTML = '<h2 class="currentPlayers">Aktuelle Spieler: </h2>';
         for(var i=0;i<player.length;i++){
-            currentPlayerList.innerHTML += '<h2>'+player[i]+': '+points[i]+'</h2><br>';  
+            currentPlayerList.innerHTML += '<h3 class="aktuelleSpieler">'+player[i]+': '+points[i]+' Points</h3>';  
         }
     });  
 
