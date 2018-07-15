@@ -2,13 +2,19 @@
 var socket = io.connect('http://localhost:3000');
 
 var playerNameArray = [];
+var playerPointsArray = [];
 var randomWord='';
 
 socket.emit('sendPlayerArray',function(){
 });
-socket.on('playerArray', function(array){
+
+socket.on('playerNameArray', function(array){
     playerNameArray=array;
     console.log(playerNameArray);
+});
+socket.on('playerPointsArray', function(array){
+    playerPointsArray=array;
+    console.log(playerPointsArray);
 });
 
 //=================START PopUp Fenster=================//
@@ -108,14 +114,33 @@ socket.on('connect', function () {
         
     });
 
-    socket.on('winner',function(data){
-        output.innerHTML += '<p><strong>Winner is: ' + data + ': </strong></p>';
+    socket.on('winner',function(winner,arrayName){
+        output.innerHTML += '<p><strong>Winner is: ' + winner + ': </strong></p>';
+        var name;
+        var points;
+        var jsonArray={};
+
+        for(var i=0;i<playerNameArray.length; i++){
+            name = playerNameArray[i];                
+            points= playerPointsArray[i];
+            jsonArray[name] = points;
+            var json = JSON.stringify(jsonArray);
+        }
+            console.log(json);
+            $.ajax({
+                type: 'POST',
+                contentType: "application/json; charset=utf-8",
+                url: 'http://localhost:3000/highscore',
+                data: json
+            });
+            
+        
     });
 
     socket.on('chat', function(data){
         feedback.innerHTML = '';
         output.innerHTML += '<p><strong>' + data.handle + ': </strong>' + data.message + '</p>';
-    });
+    }); 
 
     socket.on('typing', function(data){
         feedback.innerHTML = '<p><em>' + data + ' is typing a message...</em></p>';
@@ -168,6 +193,13 @@ function getWord(){
 }
 
 //=================END Random word=================//
+
+
+//=================START Push Highscore=================//
+
+
+//=================END Push Highscore=================//
+
 
 //=================START WITHEBOARD=================//
 'use strict';

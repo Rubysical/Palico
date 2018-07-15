@@ -21,8 +21,6 @@ $.ajax({
     data: json
 });
 
-//TimeOut nicht schön !
-
 setTimeout(function(){
     showMessage();
 }, 300);

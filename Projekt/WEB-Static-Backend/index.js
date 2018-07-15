@@ -28,7 +28,7 @@ const staticPath = path.join(__dirname, 'public');
 app.use(express.static(staticPath));
 
 
-var Players = [];
+var PlayersName = [];
 var PlayersID=[];
 var PlayersPoints=[];
 var online=0;
@@ -47,13 +47,13 @@ io.on('connection', (socket) => {
         online++;
         console.log('Online players : ' + online);
         console.log('New player connected : ' + data);
-        Players[Players.length] = data;   
+        PlayersName[PlayersName.length] = data;   
         PlayersID[PlayersID.length] = socket.id;
         PlayersPoints[PlayersPoints.length]=0;
         
        //min. 2 players as text on the website
        // io.sockets.emit('playerList', Players);
-        console.log(Players);
+        console.log(PlayersName);
         console.log(PlayersID);
         console.log(PlayersPoints);
 
@@ -68,7 +68,7 @@ io.on('connection', (socket) => {
         io.sockets.emit('clearCanvas');
         io.sockets.emit('clearChat');
         //time = 10; //time in secends for one round
-        currentDrawsman= Players.sample();
+        currentDrawsman= PlayersName.sample();
         io.sockets.emit('draw', currentDrawsman);
        if(countdownBool == false){
         countdownBool = true;
@@ -98,7 +98,7 @@ io.on('connection', (socket) => {
     }
 
     function outputForPlayer(){
-        io.sockets.emit('playerList', Players,PlayersPoints);
+        io.sockets.emit('playerList', PlayersName,PlayersPoints);
         io.sockets.emit('drawsman', currentDrawsman);
     }
 
@@ -113,12 +113,9 @@ io.on('connection', (socket) => {
 
     function roundInterval(){
         countdown(time);
-
-        
     }
 
     var timeLeft=0;
-
     function countdown(timer){
         timeLeft = timer;
         if(i<=time){
@@ -135,21 +132,23 @@ io.on('connection', (socket) => {
         }
     }
     function winner(nameOfThePlayer){
-        for(var i = 0; i<Players.length; i++){
-            if(Players[i]==nameOfThePlayer){
+        for(var i = 0; i<PlayersName.length; i++){
+            if(PlayersName[i]==nameOfThePlayer){
                 var currentPoints=PlayersPoints[i];
                 PlayersPoints[i]=currentPoints+10;
             }
-            if(Players[i]==currentDrawsman){
+            if(PlayersName[i]==currentDrawsman){
                 var currentPoints=PlayersPoints[i];
                 PlayersPoints[i]=currentPoints+10;
             }
         }
-        console.log(Players);
+        console.log(PlayersName);
         console.log(PlayersID);
         console.log(PlayersPoints);
 
-        io.sockets.emit('winner', nameOfThePlayer);
+        io.sockets.emit('winner', nameOfThePlayer,PlayersName);
+        io.sockets.emit('playerNameArray', PlayersName);
+        io.sockets.emit('playerPointsArray', PlayersPoints);
         //setTimeout(function(){startGame();},3000);
     }
 
@@ -164,7 +163,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('sendPlayerArray', function(){
-        io.sockets.emit('playerArray', Players);
+        io.sockets.emit('playerNameArray', PlayersName);
     });
 
     // Handle chat event
@@ -188,12 +187,12 @@ io.on('connection', (socket) => {
         console.log('user disconnected'+socket.id);
        for(var i = 0; i<PlayersID.length; i++){
             if(socket.id==PlayersID[i]){
-                if(Players[i]==currentDrawsman){
+                if(PlayersName[i]==currentDrawsman){
                    // startGame();
                 }
                 PlayersID.splice(i, 1);
-                Players.splice(i,1);
-                console.log(Players);
+                PlayersName.splice(i,1);
+                console.log(PlayersName);
                 console.log(PlayersID);
                 online--;
                 outputForPlayer();
@@ -227,10 +226,21 @@ app.post('/highscore', (req, res) => {
     for (let user in newScore) {
         if (Number.isInteger(newScore[user])) {
             if (!(highscores[user] > newScore[user])) highscores[user] = newScore[user];
-        }
-
-        else {
+        
+            //newScore.push(newScore[user]); 
+            
+            const json = JSON.stringify(newScore);
+            fs.writeFile ("./resources/highscores.json", json, (err) => {
+                    if (err) throw err;
+                    
+                    console.log(newScore[user] + ' has been successfully added');
+                    msg = newScore[user] + " has been successfully added";
+                }
+            );
+        
+        }else {
             res.status(400).json({message: 'The score for ' + user + ' is not an Integer'});
+           
             return;
         }
     }
