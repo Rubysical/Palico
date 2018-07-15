@@ -59,7 +59,7 @@ io.on('connection', (socket) => {
         startFirstGame();
     });
 
-    var time=10;
+    const time=30;//time in seconds
     var i=0;
 
     //choose a random drawsman from the Players array
@@ -68,30 +68,18 @@ io.on('connection', (socket) => {
         i = 1;
         io.sockets.emit('clearCanvas');
         io.sockets.emit('clearChat');
-        //time = 10; //time in secends for one round
         currentDrawsman= PlayersName.sample();
         io.sockets.emit('draw', currentDrawsman);
-       
-        
-        roundInterval(time);
-        
-        
-       
-       setTimeout(function(){
-        startGame();
-    },(time*1000)+(time*100));
-        
+        countdown(time);
+        setTimeout(function(){startGame();},(time*1000)+(time*100));
     }
     //start the game and choose a random player who can draw 
     function startFirstGame(){
         if(online<2){
             io.sockets.emit('minTwoPlayer');
-            
         }else{
             if(online==2){
                 chooseDrawsman();
-                
-                //roundInterval();
             }
             console.log('start game');
             outputForPlayer();
@@ -130,22 +118,13 @@ io.on('connection', (socket) => {
         }       
     }
 
-    function roundInterval(t){
-        countdown(t);
-    }
-    
     function countdown(timer){
         timeLeft = timer;
         if(i<=time){
             i++;
-            setTimeout(function(){
-                io.sockets.emit('timeLeft',timeLeft);
-                
-                timeLeft--;
-                countdown(timeLeft);
-            },1000);
+            setTimeout(function(){io.sockets.emit('timeLeft',timeLeft);timeLeft--;countdown(timeLeft);},1000);
         }else{
-            
+
         }
     }
     function winner(nameOfThePlayer){
@@ -167,6 +146,7 @@ io.on('connection', (socket) => {
         io.sockets.emit('playerNameArray', PlayersName);
         io.sockets.emit('playerPointsArray', PlayersPoints);
         io.sockets.emit('winner', nameOfThePlayer);
+        setTimeout(function(){startGame();},3000);
     }
 
     //Getting a random value from an array
