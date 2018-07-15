@@ -94,10 +94,17 @@
                         <div id="output"></div>
                         <div id="feedback"></div>
                     </div>
-                    <input id="handle" type="text" placeholder="Username" readonly/>
-                    <input id="message" type="text" placeholder="Bitte hier das Wort eintippen" />
-                    <button id="send">Send</button>
-                    <div id="timer" class=""></div>
+                    
+                    
+                    <div class="input-group mb-3"></div>
+                        <input id="handle" type="text" placeholder="Username" readonly class="form-control" aria-label="Username" aria-describedby="basic-addon2"/>
+                        <input id="message" type="text" placeholder="Wort eintippen" class="form-control" aria-label="Wort eintippen" aria-describedby="basic-addon2"/>
+                            <div class="input-group-append">
+                                <button id="send" class="btn btn-outline-secondary button-for-chat" type="button">Abschicken</button>
+                            </div>
+                        </div>
+                       <div id="timer" class=""></div>
+                    
                 </div>
             </td>
             <!-- Chat Ende -->
@@ -114,15 +121,15 @@
             <!-- Canvas Ende-->
 
             <!-- Spielinfos Beginn -->
-            <td>
+            <td id="spielinfos">
                 <div id="minTwoPlayer" class="">
                 </div> 
-                <div id="currentDrawsman">
-                    
-                </div>
-                <div id="currentPlayerList">
-                    <h3>Aktuelle Spieler:</h3>
-                </div>
+                    <div id="currentDrawsman">
+                        
+                    </div>
+                    <div id="currentPlayerList">
+                        <h3>Aktuelle Spieler:</h3>
+                    </div>
              </td>
              <!-- Spielinfos Ende -->
         </tr>

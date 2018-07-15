@@ -60,9 +60,9 @@
 }
 
 #chat-window {
-  height: 520px;
+    height: 370px;
     overflow: auto;
-    background: #f9f9f9;
+    background-color: #F7F7FB;
 }
 
 #output p{
@@ -79,7 +79,7 @@
 }
 
 #output strong{
-    color: #575ed8;
+    color: red;
 }
 
 label{
@@ -94,7 +94,7 @@ label{
 /* PopUp-Fenster */
 #popup-box {
     text-align: center;
-    margin-top: 10px;
+    
 }
 
 .input-style {
@@ -152,4 +152,34 @@ th{
   font-weight: 300;
   line-height: 1.2;
   text-align:center;
+  color:white;
+  background-color: #343a40;
 }
+
+.button-for-chat {
+  width:100%;
+}
+
+#timer{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 300;
+  line-height: 1.2;
+  font-style: italic;
+}
+
+#spielinfos {
+  background-color: #F7F7FB;
+  text-align:center;
+}
+
+#minTwoPlayer {
+  color: red;
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+
