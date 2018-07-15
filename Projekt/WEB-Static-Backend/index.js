@@ -65,17 +65,19 @@ io.on('connection', (socket) => {
 
     //choose a random drawsman from the Players array
     function chooseDrawsman(){
+        timeLeft = time;
+        i = 0;
         io.sockets.emit('clearCanvas');
         io.sockets.emit('clearChat');
         //time = 10; //time in secends for one round
         currentDrawsman= PlayersName.sample();
         io.sockets.emit('draw', currentDrawsman);
-       if(countdownBool == false){
+       
         countdownBool = true;
         roundInterval();
         console.log(countdownBool);
         
-       }
+       
        setTimeout(function(){
         startGame();
     },(time*1000)+(time*100));
@@ -132,7 +134,7 @@ io.on('connection', (socket) => {
     function roundInterval(){
         countdown(time);
     }
-
+    
     var timeLeft=0;
     function countdown(timer){
         timeLeft = timer;
@@ -145,8 +147,7 @@ io.on('connection', (socket) => {
                 countdown(timeLeft);
             },1000);
         }else{
-            i=0;
-            countdown(time);
+            
         }
     }
     function winner(nameOfThePlayer){
