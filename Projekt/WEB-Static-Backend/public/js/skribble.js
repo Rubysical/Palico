@@ -95,7 +95,7 @@ socket.on('connect', function () {
             setTimeout(function(){socket.emit('randomWord', randomWord);}, 500);
             playerDraw();
             setTimeout(function(){
-                messageDrawsman.className="";
+                messageDrawsman.className="form-control";
                 message.className="overlayHidden";
                 messageDrawsman.placeholder='Zu zeichnen: ' + randomWord;
                 buttonSendMessage.removeEventListener('onclick');
@@ -103,7 +103,7 @@ socket.on('connect', function () {
         }else{
             playerNotDraw();
             messageDrawsman.className="overlayHidden";
-            message.className="";
+            message.className="form-control";
             setTimeout(function(){message.placeholder='Bitte hier das Wort eintippen';},300);
         }
         
