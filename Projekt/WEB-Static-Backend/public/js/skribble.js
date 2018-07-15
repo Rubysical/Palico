@@ -77,7 +77,6 @@ socket.on('connect', function () {
         });
         message.value = "";
     });
-
     message.addEventListener('keypress', function(){
         socket.emit('typing', handle.value);
         
@@ -91,6 +90,8 @@ socket.on('connect', function () {
     */
     socket.on('draw', function(randomPlayerName){
         if(randomPlayerName==playerName.value){
+            buttonSendMessage.disabled = true;
+        
             getWord();
             setTimeout(function(){socket.emit('randomWord', randomWord);}, 500);
             playerDraw();
@@ -98,9 +99,9 @@ socket.on('connect', function () {
                 messageDrawsman.className="form-control";
                 message.className="overlayHidden";
                 messageDrawsman.placeholder='Zu zeichnen: ' + randomWord;
-                buttonSendMessage.removeEventListener('onclick');
         },300);
-        }else{
+        }else{    
+            buttonSendMessage.disabled = false;   
             playerNotDraw();
             messageDrawsman.className="overlayHidden";
             message.className="form-control";
