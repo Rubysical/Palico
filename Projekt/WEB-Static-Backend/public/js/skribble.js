@@ -104,6 +104,8 @@ socket.on('connect', function () {
         timer.className='overlayHidden';
         currentDrawsman.className='overlayHidden';
         currentPlayerList.className='overlayHidden';
+        timer.className = 'overlayHidden';
+        
     });
 
     socket.on('winner',function(data){
